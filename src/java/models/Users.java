@@ -64,7 +64,7 @@ public class Users implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER)
     private Role roleId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId", fetch = FetchType.EAGER)
-    private List<Order1> order1List;
+    private List<Order> order1List;
 
     public Users() {
     }
@@ -139,11 +139,11 @@ public class Users implements Serializable {
     }
 
     @XmlTransient
-    public List<Order1> getOrder1List() {
+    public List<Order> getOrder1List() {
         return order1List;
     }
 
-    public void setOrder1List(List<Order1> order1List) {
+    public void setOrder1List(List<Order> order1List) {
         this.order1List = order1List;
     }
 

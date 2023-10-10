@@ -56,7 +56,7 @@ public class Product implements Serializable {
     @ManyToMany(mappedBy = "productList", fetch = FetchType.EAGER)
     private List<Users> usersList;
     @ManyToMany(mappedBy = "productList", fetch = FetchType.EAGER)
-    private List<Order1> order1List;
+    private List<Order> order1List;
 
     public Product() {
     }
@@ -123,11 +123,11 @@ public class Product implements Serializable {
     }
 
     @XmlTransient
-    public List<Order1> getOrder1List() {
+    public List<Order> getOrder1List() {
         return order1List;
     }
 
-    public void setOrder1List(List<Order1> order1List) {
+    public void setOrder1List(List<Order> order1List) {
         this.order1List = order1List;
     }
 

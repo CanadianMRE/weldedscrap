@@ -3,10 +3,10 @@
   <persistence-unit name="WeldedScrapPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>models.Users</class>
-    <class>models.Order1</class>
     <class>models.Payment</class>
     <class>models.Product</class>
     <class>models.Role</class>
+    <class>models.Order</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/welded_scrap?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
