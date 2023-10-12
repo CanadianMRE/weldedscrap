@@ -1,7 +1,7 @@
 <%-- 
     Document   : home
-    Created on : 30-Sep-2023, 11:09:17 AM
-    Author     : Jaymen
+    Created on : 11-Oct-2023, 3:17:31 PM
+    Author     : gursh
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -9,10 +9,21 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Welcome to WeldedScrap.com</title>
         <link href="${pageContext.request.contextPath}/css/base.css" rel="stylesheet" type="text/css">
     </head>
     <body>
-        <h1>Hello World!</h1>
-    </body>
+    <header>
+        <h1>Welcome to WeldedScrap.com</h1>
+    </header>
+    
+    
+        <a href="shop">Products</a>
+        <a href="register">Register</a> 
+        <a href="login">Sign In</a>  
+    
+    <footer>
+        <p>2023 WeldedScrap.com</p>
+    </footer>
+</body>
 </html>

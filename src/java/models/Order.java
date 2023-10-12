@@ -29,14 +29,15 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author Jaymen
  */
 @Entity
-@Table(name = "order")
+@Table(name = "orders")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Order1.findAll", query = "SELECT o FROM Order1 o"),
-    @NamedQuery(name = "Order1.findByOrderId", query = "SELECT o FROM Order1 o WHERE o.orderId = :orderId"),
-    @NamedQuery(name = "Order1.findByCompleted", query = "SELECT o FROM Order1 o WHERE o.completed = :completed"),
-    @NamedQuery(name = "Order1.findByOrderDate", query = "SELECT o FROM Order1 o WHERE o.orderDate = :orderDate"),
-    @NamedQuery(name = "Order1.findByPaymentId", query = "SELECT o FROM Order1 o WHERE o.paymentId = :paymentId")})
+    @NamedQuery(name = "Orders.findAll", query = "SELECT o FROM Order o"),
+    @NamedQuery(name = "Orders.findByOrderId", query = "SELECT o FROM Order o WHERE o.orderId = :orderId"),
+    @NamedQuery(name = "Orders.findByCompleted", query = "SELECT o FROM Order o WHERE o.completed = :completed"),
+    @NamedQuery(name = "Orders.findByOrderDate", query = "SELECT o FROM Order o WHERE o.orderDate = :orderDate"),
+    @NamedQuery(name = "Orders.findByPaymentId", query = "SELECT o FROM Order o WHERE o.paymentId = :paymentId")})
+
 public class Order implements Serializable {
 
     private static final long serialVersionUID = 1L;

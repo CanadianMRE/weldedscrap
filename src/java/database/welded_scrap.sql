@@ -25,7 +25,8 @@ USE welded_scrap;
 --
 DROP TABLE IF EXISTS `order_product`;
 
-DROP TABLE IF EXISTS `order`;
+DROP TABLE IF EXISTS `orders`;
+
 
 DROP TABLE IF EXISTS `cart_product`;
 
@@ -49,6 +50,8 @@ CREATE TABLE `role` (
   `name` varchar(20) NOT NULL,
   PRIMARY KEY (`roleId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -90,7 +93,7 @@ CREATE TABLE `payment` (
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `users` (
-  `userId` int(8) NOT NULL,
+  `userId`  int(8) AUTO_INCREMENT NOT NULL,
   `firstName` varchar(45) DEFAULT NULL,
   `lastName` varchar(45) DEFAULT NULL,
   `email` varchar(45) DEFAULT NULL,
@@ -101,6 +104,8 @@ CREATE TABLE `users` (
   KEY `roleId_idx` (`roleId`),
   CONSTRAINT `user_roleId_fk` FOREIGN KEY (`roleId`) REFERENCES `role` (`roleId`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -110,7 +115,7 @@ CREATE TABLE `users` (
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `order` (
+CREATE TABLE `orders` (
   `orderId` int(8) NOT NULL,
   `completed` int(1) NOT NULL,
   `orderDate` date NOT NULL,
@@ -154,7 +159,10 @@ CREATE TABLE `order_product` (
   CONSTRAINT `order_product_fk_productId` FOREIGN KEY (`productId`) REFERENCES `product` (`productId`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
+INSERT INTO `role` VALUES (1, 'system admin');
+INSERT INTO `role` VALUES (2, 'regular user');
+INSERT INTO `users` (`userId`,`firstName`,`lastName`,`email`,`password`,`address`,`roleId`)
+	VALUES (1, 'Gurshaan', 'Gill', 'gurshaan-gill@hotmail.com','password','123 up your street',1);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
@@ -165,3 +173,5 @@ CREATE TABLE `order_product` (
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2023-10-02 18:58:09
+
+

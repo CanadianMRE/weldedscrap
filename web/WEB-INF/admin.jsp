@@ -13,6 +13,6 @@
         <link href="${pageContext.request.contextPath}/css/base.css" rel="stylesheet" type="text/css">
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Admin Page</h1>
     </body>
 </html>
