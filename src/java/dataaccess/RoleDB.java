@@ -15,7 +15,7 @@ import models.Role;
  * @author Jaymen
  */
 public class RoleDB {
-     public List<Role> getAll() throws Exception {
+     public static List<Role> getAll() throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         
         try {
@@ -26,7 +26,7 @@ public class RoleDB {
         }
     }
 
-    public Role get(Integer id) throws Exception {
+    public static Role get(Integer id) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         
         try {
@@ -37,7 +37,7 @@ public class RoleDB {
         }
     }
 
-    public void insert(Role role) throws Exception {
+    public static void insert(Role role) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
         
@@ -53,7 +53,7 @@ public class RoleDB {
         }
     }
 
-    public void update(Role role) throws Exception {
+    public static void update(Role role) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
         
@@ -68,7 +68,7 @@ public class RoleDB {
         }
     }
 
-    public void delete(Role role) throws Exception {
+    public static void delete(Role role) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
         

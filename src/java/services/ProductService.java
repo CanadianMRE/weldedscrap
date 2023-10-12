@@ -4,10 +4,34 @@
  */
 package services;
 
+import dataaccess.ProductDB;
+import java.util.List;
+import models.Product;
+
 /**
  *
  * @author Jaymen
  */
 public class ProductService {
+    public Product get(Integer id) throws Exception {
+        Product product = ProductDB.get(id);
+        return product;
+    }
     
+    public List<Product> getAll() throws Exception {
+        List<Product> roles = ProductDB.getAll();
+        return roles;
+    }
+    
+    public void insert(Product product) throws Exception {
+        ProductDB.insert(product);
+    }
+    
+    public void update(Product product) throws Exception {
+        ProductDB.update(product);
+    }
+    
+    public void delete(Product product) throws Exception {
+        ProductDB.delete(product);
+    }
 }

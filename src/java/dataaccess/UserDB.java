@@ -16,8 +16,8 @@ import javax.persistence.TypedQuery;
  *
  * @author Jaymen
  */
-public class UserDB {
-     public List<Users> getAll() throws Exception {
+public  class UserDB {
+     public static List<Users> getAll() throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         
         try {
@@ -28,36 +28,36 @@ public class UserDB {
         }
     }
 
-    public Users getByUserId(int userId) {
-    EntityManager em = DBUtil.getEmFactory().createEntityManager();
-    try {
-        TypedQuery<Users> query = em.createNamedQuery("Users.findByUserId", Users.class);
-        query.setParameter("userId", userId);
-        Users user = query.getSingleResult();
-        return user;
-    } catch (NoResultException e) {
-        return null; // Return null if no user is found with the provided userId.
-    } finally {
-        em.close();
+    public static Users getByUserId(int userId) {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        try {
+            TypedQuery<Users> query = em.createNamedQuery("Users.findByUserId", Users.class);
+            query.setParameter("userId", userId);
+            Users user = query.getSingleResult();
+            return user;
+        } catch (NoResultException e) {
+            return null; // Return null if no user is found with the provided userId.
+        } finally {
+            em.close();
+        }
     }
-}
 
-    public Users getByEmail(String email) {
-    EntityManager em = DBUtil.getEmFactory().createEntityManager();
-    try {
-        TypedQuery<Users> query = em.createNamedQuery("Users.findByEmail", Users.class);
-        query.setParameter("email", email);
-        Users user = query.getSingleResult();
-        return user;
-    } catch (NoResultException e) {
-        return null; // Return null if no user is found with the provided email.
-    } finally {
-        em.close();
+    public static Users getByEmail(String email) {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        try {
+            TypedQuery<Users> query = em.createNamedQuery("Users.findByEmail", Users.class);
+            query.setParameter("email", email);
+            Users user = query.getSingleResult();
+            return user;
+        } catch (NoResultException e) {
+            return null; // Return null if no user is found with the provided email.
+        } finally {
+            em.close();
+        }
     }
-}
 
 
-    public void insert(Users user) throws Exception {
+    public static void insert(Users user) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
         
@@ -72,7 +72,7 @@ public class UserDB {
         }
     }
 
-    public void update(Users user) throws Exception {
+    public static void update(Users user) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
         
@@ -87,7 +87,7 @@ public class UserDB {
         }
     }
 
-    public void delete(Users user) throws Exception {
+    public static void delete(Users user) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
         
