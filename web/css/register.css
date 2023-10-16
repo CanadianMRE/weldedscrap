@@ -1,0 +1,120 @@
+/* Reset default margin and padding */
+body, h1, form {
+  margin: 0;
+  padding: 0;
+}
+
+/* Set a background color and text color */
+body {
+  background-color: #f0f0f0;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center horizontally and vertically */
+  align-items: center;
+  height: 100vh;
+}
+
+/* Style the header */
+header {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 0;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+}
+
+/** Style the header columns */
+#header_left{
+    text-align:center;
+    display: flex;
+    align-items:center;
+    justify-content: flex-start;
+    padding-left: 30px;
+}
+#header_center{
+    text-align:right;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+}
+#header_right {
+    text-align:center;
+    display: flex;
+    align-items:center;
+    justify-content: flex-end;/* Align to the right side */
+    padding-right: 30px
+}
+
+header a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+#logo {
+  max-width: 100px;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Style the h1 element */
+h1 {
+  text-align: center;
+  color: #333;
+  margin-top: 20px;
+}
+
+/* Style the form container */
+form {
+  background-color: #ccc; /* Grey background */
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  max-width: 100%;
+  text-align: center;
+  margin-top: 70px; /* Create space below the fixed header */
+}
+
+/* Style the form elements */
+form input[type="text"],
+form input[type="password"] {
+  width: 100%; /* Make the inputs fill the entire width */
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  outline: none;
+}
+
+/* Style the submit button */
+form input[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 100%; /* Make the button fill the entire width */
+}
+
+form input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+/* Style the link */
+a {
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+  color: #007bff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
