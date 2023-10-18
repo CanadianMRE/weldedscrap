@@ -43,7 +43,7 @@
         Phone Number<br>
         ${phone}
         
-        <a href=""
+        <a href="editprofile">Edit Profile</a>
         
         
     </body>

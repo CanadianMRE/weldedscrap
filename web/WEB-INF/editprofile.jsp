@@ -28,7 +28,23 @@
     <body>
         <h1>Edit Profile</h1>
         
-        Name:<br>
+        <form>
+        First Name:<br>
+        <input type="text" name="firstName">
         
+        Last Name:<br>
+        <input type="text" name="lastName"><br>
+        
+        Email:<br>
+        <input type="text" name="email"><br>
+        
+        Address:<br>
+        <input type="text" name="address"><br>
+        
+        Phone Number:<br>
+        <input type="text" name="phoneNumber"><br>
+        
+        <input type="submit" value="Save Changes">
+        </form>
     </body>
 </html>
