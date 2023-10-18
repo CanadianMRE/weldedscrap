@@ -9,11 +9,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>WeldedScrap</title>
+        <title>Login</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-        <link rel="stylesheet" type="text/css" href="./css/login.css"> <!-- Use the same CSS as the product page -->
+        <link rel="stylesheet" type="text/css" href="./css/login.css">
     </head>
-     <header>
+    <header>
         <div class="row" id="header_row">
             <div class="col-4" id="header_left">
                 <a href="home">WeldedScrap</a>
@@ -28,9 +28,10 @@
         </div>
     </header>
     <body>
-        <h1>WeldedScrap.com</h1>
-        <h2>Login</h2>
+        <h2 id="loginT">Login</h2>
+        <br>
         <h4>${message}</h4>
+        <br>
         <form action="login" method="post">
             <label>Email:</label>
             <input type="text" name="email"><br>

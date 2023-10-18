@@ -6,7 +6,7 @@ body, h1, h2, h4, form, label, input, a {
 
 /* Set a background color and text color */
 body {
-  background-color: #f0f0f0;
+  background-color: #fff;
   font-family: Arial, sans-serif;
   display: flex;
   flex-direction: column;
@@ -63,6 +63,12 @@ form {
   max-width: 100%;
   text-align: center;
   margin-top: 70px; /* Create space below the fixed header */
+}
+
+#logo {
+  max-width: 100px;
+  display: block;
+  margin: 0 auto;
 }
 
 /* Style the form elements */
