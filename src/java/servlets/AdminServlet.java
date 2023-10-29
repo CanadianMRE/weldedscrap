@@ -208,6 +208,54 @@ public class AdminServlet extends HttpServlet {
         getBasePage(request, response);
     }
     
+    private void showEditProduct(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String rawId = request.getParameter("productId");
+        
+        if (rawId == null) {
+            getBasePage(request, response);
+            return;
+        }
+        
+        Integer editId = Integer.valueOf(rawId);
+        
+        Product editProduct = ProductService.get(editId);
+        
+        if (editProduct == null) {
+            getBasePage(request, response);
+            return;
+        }
+        
+        request.setAttribute("product", editProduct);
+        
+        getServletContext().getRequestDispatcher("/WEB-INF/editProduct.jsp").forward(request, response);
+    }
+    
+    private void showAddProduct(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        getServletContext().getRequestDispatcher("/WEB-INF/addProduct.jsp").forward(request, response);
+    }
+    
+    private void showEditUser(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String rawId = request.getParameter("userId");
+        
+        if (rawId == null) {
+            getBasePage(request, response);
+            return;
+        }
+        
+        Integer editId = Integer.valueOf(rawId);
+        
+        Users editUser = UserService.get(editId);
+        
+        if (editUser == null) {
+            getBasePage(request, response);
+            return;
+        }
+        
+        request.setAttribute("user", editUser);
+        
+        getServletContext().getRequestDispatcher("/WEB-INF/editUser.jsp").forward(request, response);
+    }
+    
     private void handleAdminPage(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String action = request.getParameter("action");
         
@@ -222,6 +270,15 @@ public class AdminServlet extends HttpServlet {
                 break;
             case "editUser":
                 editUser(request, response);
+                break;
+            case "showEditProduct":
+                showEditProduct(request, response);
+                break;
+            case "showAddProduct":
+                showAddProduct(request, response);
+                break;
+            case "showEditUser":
+                showEditUser(request, response);
                 break;
             case "addProduct":
                 addProduct(request, response);
