@@ -1,6 +1,7 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package models;
 
@@ -8,45 +9,38 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Basic;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Jaymen
+ * @author frenc
  */
 @Entity
-@Table(name = "payment")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Payment.findAll", query = "SELECT p FROM Payment p"),
-    @NamedQuery(name = "Payment.findByPaymentId", query = "SELECT p FROM Payment p WHERE p.paymentId = :paymentId"),
-    @NamedQuery(name = "Payment.findByProcessed", query = "SELECT p FROM Payment p WHERE p.processed = :processed"),
-    @NamedQuery(name = "Payment.findByCost", query = "SELECT p FROM Payment p WHERE p.cost = :cost"),
-    @NamedQuery(name = "Payment.findByProcessedDate", query = "SELECT p FROM Payment p WHERE p.processedDate = :processedDate")})
+    @NamedQuery(name = "Payment.findAll", query = "SELECT p FROM Payment p")
+    , @NamedQuery(name = "Payment.findByPaymentId", query = "SELECT p FROM Payment p WHERE p.paymentId = :paymentId")
+    , @NamedQuery(name = "Payment.findByProcessed", query = "SELECT p FROM Payment p WHERE p.processed = :processed")
+    , @NamedQuery(name = "Payment.findByCost", query = "SELECT p FROM Payment p WHERE p.cost = :cost")
+    , @NamedQuery(name = "Payment.findByProcessedDate", query = "SELECT p FROM Payment p WHERE p.processedDate = :processedDate")})
 public class Payment implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "paymentId")
     private Integer paymentId;
     @Basic(optional = false)
-    @Column(name = "processed")
     private int processed;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Basic(optional = false)
-    @Column(name = "cost")
     private BigDecimal cost;
     @Basic(optional = false)
-    @Column(name = "processedDate")
     @Temporal(TemporalType.DATE)
     private Date processedDate;
 
