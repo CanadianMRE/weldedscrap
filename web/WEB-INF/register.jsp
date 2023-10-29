@@ -19,7 +19,7 @@
                 <a href="home">WeldedScrap</a>
             </div>
             <div class="col-4" id="header_center">
-                <img src="./images/logo.png" id="logo">
+                <img src="./images/WeldedScrap.png" id="logo">
             </div>
             <div class="col-4" id="header_right">
                 <a href="login">Login</a>
@@ -32,10 +32,10 @@
         <br>
         ${message}
         <form action="register" method="post">
-            Email: <input type="text" name="email"><br>
-            First Name: <input type="text" name="firstName"><br>
-            Last Name: <input type="text" name="lastName"><br>
-            Password: <input type="password" name="password"><br>
+            Email: <input type="text" name="email" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" required><br>
+            First Name: <input type="text" name="firstName" pattern="\b([A-ZÀ-ÿ][-,a-z. ']+[ ]*)+" required><br>
+            Last Name: <input type="text" name="lastName" pattern="\b([A-ZÀ-ÿ][-,a-z. ']+[ ]*)+" required><br>
+            Password: <input type="password" name="password" reqiured><br>
             <input type="submit" value="Register">
         </form>
         <br>

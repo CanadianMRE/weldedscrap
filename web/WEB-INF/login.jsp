@@ -19,7 +19,7 @@
                 <a href="home">WeldedScrap</a>
             </div>
             <div class="col-4" id="header_center">
-                <img src="./images/logo.png" id="logo">
+                <img src="./images/WeldedScrap.png" id="logo">
             </div>
             <div class="col-4" id="header_right">
                 <a href="login">Login</a>
@@ -34,9 +34,9 @@
         <br>
         <form action="login" method="post">
             <label>Email:</label>
-            <input type="text" name="email"><br>
+            <input type="text" name="email" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" required><br>
             <label>Password:</label>
-            <input type="password" name="password"><br>
+            <input type="password" name="password" required><br>
             <input type="submit" value="Sign in">
         </form>
         <a href="register">Register</a>

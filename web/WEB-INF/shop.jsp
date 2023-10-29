@@ -19,7 +19,7 @@
                 <a href="home">WeldedScrap</a>
             </div>
             <div class="col-4" id="header_center">
-                <img src="./images/logo.png" id="logo">
+                <img src="./images/WeldedScrap.png" id="logo">
             </div>
             <div class="col-4" id="header_right">
                 <a href="login">Login</a>
@@ -28,7 +28,7 @@
         </div>
     </header>
 
-    <body>
+     <body>
         <h1>Products</h1>
         <div class="container text-center" id="product_grid">
             <div class="row">
@@ -37,6 +37,8 @@
                     <br>
                     Item1
                     <br>
+                    <a href="item.jsp?productId=1" class="btn btn-primary">Details</a>
+                    <br>
                     <input type="button" value="Add to Cart">
                 </div>
                 <div class="col">
@@ -44,12 +46,16 @@
                     <br>
                     Item2
                     <br>
+                    <a href="item.jsp?productId=2" class="btn btn-primary">Details</a>
+                    <br>
                     <input type="button" value="Add to Cart">
                 </div>
                 <div class="col">
                     <img src="./images/ph3.jpg" id="logo3">
                     <br>
                     Item3
+                    <br>
+                    <a href="item.jsp?productId=1" class="btn btn-primary">Details</a>
                     <br>
                     <input type="button" value="Add to Cart">
                 </div>
