@@ -7,6 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <head>
+    
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Product</title>
     </head>
@@ -21,8 +22,11 @@
             <p>Description: ${product.description}</p>
             <p>Price: ${product.price}</p>
             <p>Stock: ${product.stock}</p>
-            <button>Add to Cart</button>
-            
+            <form method="post" action="CartServlet">
+            <input type="hidden" name="productId" value="${product.productId}">
+            <input type="hidden" name="quantity" value="1"> 
+            <button type="submit">Add to Cart</button>
+            </form>
         </c:when>
         <c:otherwise>
             <p>No product selected.</p>

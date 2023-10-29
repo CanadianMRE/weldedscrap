@@ -37,7 +37,7 @@
                     <br>
                     Item1
                     <br>
-                    <a href="item.jsp?productId=1" class="btn btn-primary">Details</a>
+                    <a href="item?productId=1" class="btn btn-primary">Details</a>
                     <br>
                     <input type="button" value="Add to Cart">
                 </div>
@@ -46,7 +46,7 @@
                     <br>
                     Item2
                     <br>
-                    <a href="item.jsp?productId=2" class="btn btn-primary">Details</a>
+                    <a href="item?productId=2" class="btn btn-primary">Details</a>
                     <br>
                     <input type="button" value="Add to Cart">
                 </div>
@@ -55,7 +55,7 @@
                     <br>
                     Item3
                     <br>
-                    <a href="item.jsp?productId=1" class="btn btn-primary">Details</a>
+                   <a href="item?productId=3" class="btn btn-primary">Details</a>
                     <br>
                     <input type="button" value="Add to Cart">
                 </div>

@@ -156,7 +156,7 @@ CREATE TABLE `order_product` (
   `orderId` int(8) NOT NULL,
   KEY `order_product_fk_productId_idx` (`productId`),
   KEY `order_product_fk_orderId_idx` (`orderId`),
-  CONSTRAINT `order_product_fk_orderId` FOREIGN KEY (`orderId`) REFERENCES `order` (`orderId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `order_product_fk_orderId` FOREIGN KEY (`orderId`) REFERENCES `orders` (`orderId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `order_product_fk_productId` FOREIGN KEY (`productId`) REFERENCES `product` (`productId`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
