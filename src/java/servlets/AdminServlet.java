@@ -306,7 +306,7 @@ public class AdminServlet extends HttpServlet {
             return;
         }
         
-        if (user.getRoleId().getRoleId() == 1) {
+        if (user.getRoleId().getRoleId() != 1) {
             response.sendRedirect("home");
             return;
         }
