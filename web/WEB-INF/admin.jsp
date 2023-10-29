@@ -28,7 +28,7 @@
         </div>
     </header>
     <body>
-        <h1>Welcome ${user}</h1>
+        <h1>Welcome ${user.firstName}</h1>
         <c:forEach items="${users}" var="user">
         <tr>
             <th>${user.email}</th>
