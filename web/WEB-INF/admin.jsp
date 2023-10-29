@@ -34,7 +34,7 @@
             <th>${user.email}</th>
             <th>${user.firstName}</th>
             <th>${user.lastName}</th>
-            <th>${user.role.roleName}</th>
+            <th>${user.roleId.name}</th>
             <th>
                 <form method="post" action="editUser">
                     <input type="hidden" name="userId" value="${user.userId}">
