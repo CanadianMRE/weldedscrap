@@ -6,32 +6,32 @@ package services;
 
 import dataaccess.OrderDB;
 import java.util.List;
-import models.Orders;
+import models.Order;
 
 /**
  *
  * @author Jaymen
  */
 public class OrderService {
-    public Orders get(Integer id) throws Exception {
-        Orders order = OrderDB.get(id);
+    public Order get(Integer id) throws Exception {
+        Order order = OrderDB.get(id);
         return order;
     }
     
-    public List<Orders> getAll() throws Exception {
-        List<Orders> orders = OrderDB.getAll();
+    public List<Order> getAll() throws Exception {
+        List<Order> orders = OrderDB.getAll();
         return orders;
     }
     
-    public void insert(Orders order) throws Exception {
+    public void insert(Order order) throws Exception {
         OrderDB.insert(order);
     }
     
-    public void update(Orders order) throws Exception {
+    public void update(Order order) throws Exception {
         OrderDB.update(order);
     }
     
-    public void delete(Orders order) throws Exception {
+    public void delete(Order order) throws Exception {
         OrderDB.delete(order);
     }
 }
