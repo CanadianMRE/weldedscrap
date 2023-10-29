@@ -14,10 +14,9 @@ import models.*;
  * @author Jaymen
  */
 public class UserService {
-    public Users get(int userId) {
+    public static Users get(int userId) {
         try {
-            UserDB userDB = new UserDB();
-            Users user = userDB.getByUserId(userId);
+            Users user = UserDB.getByUserId(userId);
             return user;
         } catch (Exception e) {
             e.printStackTrace();
@@ -25,10 +24,9 @@ public class UserService {
         }
     }
 
-    public Users getByEmail(String email) {
+    public static Users getByEmail(String email) {
         try {
-            UserDB userDB = new UserDB();
-            Users user = userDB.getByEmail(email);
+            Users user = UserDB.getByEmail(email);
             return user;
         } catch (Exception e) {
             e.printStackTrace();
@@ -36,10 +34,9 @@ public class UserService {
         }
     }
 
-    public List<Users> getAll() {
+    public static List<Users> getAll() {
         try {
-            UserDB userDB = new UserDB();
-            List<Users> users = userDB.getAll();
+            List<Users> users = UserDB.getAll();
             return users;
         } catch (Exception e) {
             e.printStackTrace();
@@ -47,28 +44,25 @@ public class UserService {
         }
     }
 
-    public void insert(Users user) {
+    public static void insert(Users user) {
         try {
-            UserDB userDB = new UserDB();
-            userDB.insert(user);
+            UserDB.insert(user);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void update(Users user) {
+    public static void update(Users user) {
         try {
-            UserDB userDB = new UserDB();
-            userDB.update(user);
+            UserDB.update(user);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void delete(Users user) {
+    public static void delete(Users user) {
         try {
-            UserDB userDB = new UserDB();
-            userDB.delete(user);
+            UserDB.delete(user);
         } catch (Exception e) {
             e.printStackTrace();
         }

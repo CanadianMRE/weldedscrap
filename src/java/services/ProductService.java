@@ -13,25 +13,25 @@ import models.Product;
  * @author Jaymen
  */
 public class ProductService {
-    public Product get(Integer id) throws Exception {
+    public static Product get(Integer id) throws Exception {
         Product product = ProductDB.get(id);
         return product;
     }
     
-    public List<Product> getAll() throws Exception {
+    public static List<Product> getAll() throws Exception {
         List<Product> roles = ProductDB.getAll();
         return roles;
     }
     
-    public void insert(Product product) throws Exception {
+    public static void insert(Product product) throws Exception {
         ProductDB.insert(product);
     }
     
-    public void update(Product product) throws Exception {
+    public static void update(Product product) throws Exception {
         ProductDB.update(product);
     }
     
-    public void delete(Product product) throws Exception {
+    public static void delete(Product product) throws Exception {
         ProductDB.delete(product);
     }
 }
