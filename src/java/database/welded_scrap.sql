@@ -168,7 +168,7 @@ INSERT INTO `role` VALUES (2, 'regular user');
 -- Sample data for the "users" table
 INSERT INTO `users` (`userId`, `firstName`, `lastName`, `email`, `password`, `address`, `roleId`)
 VALUES
-    (1, 'Gurshaan', 'Gill', 'gurshaan-gill@hotmail.com','password','123 up your street',1);
+    (1, 'Gurshaan', 'Gill', 'gurshaan-gill@hotmail.com','password','123 up your street',1),
     (2, 'John', 'Doe', 'johndoe@example.com', 'password', '123 Main St', 2),
     (3, 'Alice', 'Smith', 'alicesmith@example.com', 'password', '456 Elm St', 2),
     (4, 'Bob', 'Johnson', 'bj@example.com', 'password', '789 Oak St', 2),
