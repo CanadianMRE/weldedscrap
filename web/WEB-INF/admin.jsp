@@ -3,7 +3,7 @@
     Created on : 30-Sep-2023, 11:10:13 AM
     Author     : Jaymen
 --%>
-
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -28,15 +28,57 @@
         </div>
     </header>
     <body>
-        <h1>Welcome ${user}</h1>
-        Admin functions:
-        <br>
-        <button>Edit User</button> <button>Delete User</button>
-        <br>
-        Products
-        <br>
-        <button>Add</button><button>Edit</button><button>Delete</button>
-        <br>
-        <button>Log Out</button>
-    </body>
+        <h1>Welcome ${user.firstName}</h1>
+        <c:forEach items="${users}" var="user">
+        <tr>
+            <th>${user.email}</th>
+            <th>${user.firstName}</th>
+            <th>${user.lastName}</th>
+            <th>${user.role.roleName}</th>
+            <th>
+                <form method="post" action="editUser">
+                    <input type="hidden" name="userId" value="${user.userId}">
+                    <input type="hidden" name="action" value="edit">
+                    <button type="submit" name="submit" class="link-button">Edit</button>
+                </form>
+            </th>
+            <th>
+                <form method="post" action="deleteUser">
+                    <input type="hidden" name="userId" value="${user.userId}">
+                    <input type="hidden" name="action" value="delete">
+                    <button type="submit" name="submit" class="link-button">Delete</button>
+                </form>
+            </th>
+        </tr>
+    </c:forEach>
+
+        <c:forEach items="${products}" var="product">
+        <tr>
+            <th>${product.productId}</th>
+            <th>${product.name}</th>
+            <th>${product.stock}</th>
+            <th>
+                <form method="post" action="addProduct">
+                    <input type="hidden" name="productId" value="${product.productId}">
+                    <input type="hidden" name="action" value="edit">
+                    <button type="submit" name="submit" class="link-button">add</button>
+                </form>
+            </th>
+            <th>
+                <form method="post" action="editProduct">
+                    <input type="hidden" name="productId" value="${product.productId}">
+                    <input type="hidden" name="action" value="delete">
+                    <button type="submit" name="submit" class="link-button">Edit</button>
+                </form>
+            </th
+            <th>
+                <form method="post" action="deleteProduct">
+                    <input type="hidden" name="productId" value="${product.productId}">
+                    <input type="hidden" name="action" value="delete">
+                    <button type="submit" name="submit" class="link-button">Delete</button>
+                </form>
+            </th>
+        </tr>
+    </c:forEach>
+</body>
 </html>
