@@ -53,6 +53,9 @@ public class Product implements Serializable {
     @Basic(optional = false)
     @Column(name = "price")
     private BigDecimal price;
+    @Basic(optional = false)
+    @Column(name = "imagePath")
+    private String imagePath;
     @ManyToMany(mappedBy = "productList", fetch = FetchType.EAGER)
     private List<Users> usersList;
     @ManyToMany(mappedBy = "productList", fetch = FetchType.EAGER)
@@ -136,6 +139,14 @@ public class Product implements Serializable {
         int hash = 0;
         hash += (productId != null ? productId.hashCode() : 0);
         return hash;
+    }
+    
+     public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 
     @Override

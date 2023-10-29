@@ -64,9 +64,10 @@ CREATE TABLE `role` (
 CREATE TABLE `product` (
   `productId` int(11) NOT NULL,
   `name` varchar(45) NOT NULL,
-  `description` varchar(45) NOT NULL,
+  `description` varchar(255) NOT NULL,
   `stock` int(10) NOT NULL,
   `price` decimal(8,2) NOT NULL,
+  `imagePath` VARCHAR(255),
   PRIMARY KEY (`productId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -159,10 +160,29 @@ CREATE TABLE `order_product` (
   CONSTRAINT `order_product_fk_productId` FOREIGN KEY (`productId`) REFERENCES `product` (`productId`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--Data for role
 INSERT INTO `role` VALUES (1, 'system admin');
 INSERT INTO `role` VALUES (2, 'regular user');
-INSERT INTO `users` (`userId`,`firstName`,`lastName`,`email`,`password`,`address`,`roleId`)
-	VALUES (1, 'Gurshaan', 'Gill', 'gurshaan-gill@hotmail.com','password','123 up your street',1);
+	
+-- Sample data for the "users" table
+INSERT INTO `users` (`userId`, `firstName`, `lastName`, `email`, `password`, `address`, `roleId`)
+VALUES
+    (1, 'Gurshaan', 'Gill', 'gurshaan-gill@hotmail.com','password','123 up your street',1);
+    (2, 'John', 'Doe', 'johndoe@example.com', 'password', '123 Main St', 2),
+    (3, 'Alice', 'Smith', 'alicesmith@example.com', 'password', '456 Elm St', 2),
+    (4, 'Bob', 'Johnson', 'bj@example.com', 'password', '789 Oak St', 2),
+    (5, 'John', 'Madden', 'johnmadden@example.com', 'password', '69 Football Ave', 2),
+    (6, 'Walter', 'White', 'notheisenberg@example.com', 'password', '208 Negra Arroya Lane', 2);
+
+-- Sample data for the "product" table
+INSERT INTO `product` (`productId`, `name`, `description`, `stock`, `price`, imagePath)
+VALUES
+    (1, 'metal horse', 'dank metal horse for your living room', 12, 49.99, './images/ph1.jpg'),
+    (2, 'ferrous mona lisa', 'the mona lisa but metal to impress that punk art major girl you are inviting over', 69, 42.69,'./images/ph2.jpg'),
+    (3, 'big metal pipe', 'makes loud funny meme noise when dropped on floor', 26, 10.00,'./images/ph3.jpg'),
+    (4, 'cool ninja star', 'throw it at a wall to make a hole in it. If you throw it hard enough it might stick to it.', 20, 20.50, './images/ph4.jpg'),
+    (5, 'la obeja', '6 foot tall metal sheep to guard your home', 2, 10.79, './images/ph5.jpg');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
