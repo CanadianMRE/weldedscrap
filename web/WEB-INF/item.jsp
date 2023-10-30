@@ -32,5 +32,6 @@
             <p>No product selected.</p>
         </c:otherwise>
     </c:choose>
+    <a href="login">Logout</a>
 </body>
 </html>

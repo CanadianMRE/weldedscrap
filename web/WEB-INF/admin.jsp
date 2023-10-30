@@ -80,5 +80,6 @@
             </th>
         </tr>
     </c:forEach>
+        <a href="login">Logout</a>
 </body>
 </html>

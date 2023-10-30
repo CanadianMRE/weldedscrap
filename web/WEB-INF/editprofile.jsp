@@ -46,5 +46,6 @@
         
         <input type="submit" value="Save Changes">
         </form>
+        <a href="login">Logout</a>
     </body>
 </html>

@@ -45,6 +45,8 @@
         
         <a href="editprofile">Edit Profile</a>
         
+        <a href="login">Logout</a>
+        
         
     </body>
 </html>
