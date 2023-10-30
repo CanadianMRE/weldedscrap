@@ -49,7 +49,7 @@ CREATE TABLE `role` (
   `roleId` int(8) NOT NULL,
   `name` varchar(20) NOT NULL,
   PRIMARY KEY (`roleId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) 
 
 
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -69,7 +69,7 @@ CREATE TABLE `product` (
   `price` decimal(8,2) NOT NULL,
   `imagePath` VARCHAR(255),
   PRIMARY KEY (`productId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) 
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -84,7 +84,7 @@ CREATE TABLE `payment` (
   `cost` decimal(8,2) NOT NULL,
   `processedDate` date NOT NULL,
   PRIMARY KEY (`paymentId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) 
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -104,7 +104,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`userId`),
   KEY `roleId_idx` (`roleId`),
   CONSTRAINT `user_roleId_fk` FOREIGN KEY (`roleId`) REFERENCES `role` (`roleId`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) 
 
 
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -125,7 +125,7 @@ CREATE TABLE `orders` (
   PRIMARY KEY (`orderId`),
   KEY `userId_idx` (`userId`),
   CONSTRAINT `order_userId_fk` FOREIGN KEY (`userId`) REFERENCES `users` (`userId`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) 
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -142,7 +142,7 @@ CREATE TABLE `cart_product` (
   KEY `userId_idx` (`userid`),
   CONSTRAINT `cart_prodcut_fk_userId` FOREIGN KEY (`userid`) REFERENCES `users` (`userId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `cart_product_fk_productId` FOREIGN KEY (`productid`) REFERENCES `product` (`productId`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) 
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -158,7 +158,7 @@ CREATE TABLE `order_product` (
   KEY `order_product_fk_orderId_idx` (`orderId`),
   CONSTRAINT `order_product_fk_orderId` FOREIGN KEY (`orderId`) REFERENCES `orders` (`orderId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `order_product_fk_productId` FOREIGN KEY (`productId`) REFERENCES `product` (`productId`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) 
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --Data for role

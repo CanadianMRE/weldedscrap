@@ -68,12 +68,15 @@
                     <br>
                     Item4
                     <br>
+                    <a href="item?productId=3" class="btn btn-primary">Details</a>
                     <input type="button" value="Add to Cart">
                 </div>
                 <div class="col">
                     <img src="./images/ph5.jpg" id="logo5">
                     <br>
                     Item5
+                    <br>
+                    <a href="item?productId=5" class="btn btn-primary">Details</a>
                     <br>
                     <input type="button" value="Add to Cart">
                 </div>
@@ -111,6 +114,7 @@
                 </div>
             </div>
         </div>
+        <a href="login">Logout</a>
     </body>
 
 </html>

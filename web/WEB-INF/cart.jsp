@@ -25,5 +25,6 @@
     <footer>
         <p>2023 WeldedScrap.com</p>
     </footer>
+        <a href="login">Logout</a>
 </body>
 </html>
