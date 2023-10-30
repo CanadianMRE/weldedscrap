@@ -10,6 +10,8 @@
     
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Product</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="./css/item.css">
     </head>
     <body>
     <h1>Product Details</h1>
@@ -17,7 +19,6 @@
         <c:when test="${not empty productId}">
            
             <img src="${product.imagePath}" alt="${product.name}" width="200" height="200">
-            <p>Product ID: ${product.productId}</p>
             <p>Product Name: ${product.name}</p>
             <p>Description: ${product.description}</p>
             <p>Price: ${product.price}</p>
