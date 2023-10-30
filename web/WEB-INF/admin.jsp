@@ -13,108 +13,111 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="./css/admin.css">
     </head>
-    <header>
-        <div class="row" id="header_row">
-            <div class="col-4" id="header_left">
-                <a href="home">WeldedScrap</a>
-            </div>
-            <div class="col-4" id="header_center">
-                <img src="./images/WeldedScrap.png" id="logo">
-            </div>
-            <div class="col-4" id="header_right">
-                <a href="login">Login</a>
-                <a href="register">Register</a>
-            </div>
-        </div>
-    </header>
     <body>
-        <div class="row">
-            <h1>Welcome ${user.firstName}</h1>
-        </div>
-        <h2>Users</h2>
-        <div class="row">
-            <div class="col">
-                <c:forEach items="${users}" var="user">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">Email</th>
-                                <th scope="col">First Name</th>
-                                <th scope="col">Last Name</th>
-                                <th scope="col">Role</th>
-
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>${user.email}</td>
-                                <td>${user.firstName}</td>
-                                <td>${user.lastName}</td>
-                                <td>${user.roleId.name}</td>
-                                <td>
-                                    <form method="post" action="editUser">
-                                        <input type="hidden" name="userId" value="${user.userId}">
-                                        <input type="hidden" name="action" value="edit">
-                                        <button type="submit" name="submit" class="link-button">Edit</button>
-                                    </form>
-                                </td>
-                                <td>
-                                    <form method="post" action="deleteUser">
-                                        <input type="hidden" name="userId" value="${user.userId}">
-                                        <input type="hidden" name="action" value="delete">
-                                        <button type="submit" name="submit" class="link-button">Delete</button>
-                                    </form>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </c:forEach>
+        <header>
+            <div class="row" id="header_row">
+                <div class="col-4" id="header_left">
+                    <a href="home">WeldedScrap</a>
+                </div>
+                <div class="col-4" id="header_center">
+                    <img src="./images/WeldedScrap.png" id="logo">
+                </div>
+                <div class="col-4" id="header_right">
+                    <a href="login">Login</a>
+                    <a href="register">Register</a>
+                </div>
             </div>
-        </div>
-        <h2>Products</h2>
-        <div class="row">
-            <div class="col">
-                <c:forEach items="${products}" var="product">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">Product ID</th>
-                                <th scope="col">Product Name</th>
-                                <th scope="col">Stock</th>
-
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>${product.productId}</td>
-                                <td>${product.name}</td>
-                                <td>${product.stock}</td>
-                                <td>
-                                    <form method="post" action="editUser">
-                                        <input type="hidden" name="userId" value="${product.productId}">
-                                        <input type="hidden" name="action" value="edit">
-                                        <button type="submit" name="submit" class="link-button">Add</button>
-                                    </form>
-                                </td>
-                                <td>
-                                    <form method="post" action="deleteUser">
-                                        <input type="hidden" name="userId" value="$${product.productId}">
-                                        <input type="hidden" name="action" value="delete">
-                                        <button type="submit" name="submit" class="link-button">Edit</button>
-                                    </form>
-                                </td>
-                                <td>
-                                    <form method="post" action="deleteUser">
-                                        <input type="hidden" name="userId" value="$${product.productId}">
-                                        <input type="hidden" name="action" value="delete">
-                                        <button type="submit" name="submit" class="link-button">Delete</button>
-                                    </form>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </c:forEach>
+        </header>
+        <div class="container">
+            <div class="row" id="welcome">
+                <h1>Welcome ${user.firstName}</h1>
             </div>
+            <h2>Users</h2>
+            <div class="row">
+                <div class="col">
+                    <c:forEach items="${users}" var="user">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col"></th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">First Name</th>
+                                    <th scope="col">Last Name</th>
+                                    <th scope="col">Role</th>
+                                    <th scope="col">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="radio"></td>
+                                    <td>${user.email}</td>
+                                    <td>${user.firstName}</td>
+                                    <td>${user.lastName}</td>
+                                    <td>${user.roleId.name}</td>
+                                    <td>
+                                        <form method="post" action="editUser">
+                                            <input type="hidden" name="userId" value="${user.userId}">
+                                            <input type="hidden" name="action" value="edit">
+                                            <button type="submit" name="submit" class="btn btn-primary">Edit</button>
+                                        </form>
+                                        <form method="post" action="deleteUser">
+                                            <input type="hidden" name="userId" value="${user.userId}">
+                                            <input type="hidden" name="action" value="delete">
+                                            <button type="submit" name="submit" class="btn btn-danger">Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </c:forEach>
+                </div>
+            </div>
+            <h2>Products</h2>
+            <div class="row">
+                <div class="col">
+                    <c:forEach items="${products}" var="product">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col"></th>
+                                    <th scope="col">Product ID</th>
+                                    <th scope="col">Product Name</th>
+                                    <th scope="col">Stock</th>
+                                    <th scope="col">Actions</th>                              
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="radio"></td>
+                                    <td>${product.productId}</td>
+                                    <td>${product.name}</td>
+                                    <td>${product.stock}</td>
+                                    <td>
+                                        <form method="post" action="editUser">
+                                            <input type="hidden" name="userId" value="${product.productId}">
+                                            <input type="hidden" name="action" value="edit">
+                                            <button type="submit" name="submit" class="btn btn-success">Add</button>
+                                        </form>
+                                        <form method="post" action="deleteUser">
+                                            <input type="hidden" name="userId" value="$${product.productId}">
+                                            <input type="hidden" name="action" value="delete">
+                                            <button type="submit" name="submit" class="btn btn-primary">Edit</button>
+                                        </form>
+                                        <form method="post" action="deleteUser">
+                                            <input type="hidden" name="userId" value="$${product.productId}">
+                                            <input type="hidden" name="action" value="delete">
+                                            <button type="submit" name="submit" class="btn btn-danger">Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </c:forEach>
+                </div>
+            </div>
+            <p>
+                <a href="login">Logout</a>
+            </p>
         </div>
     </body>
 </html>

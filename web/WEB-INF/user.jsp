@@ -29,7 +29,7 @@
         </div>
     </header>    
     <body>
-        <h1>Your Profile</h1
+        <h1>Your Profile</h1>
         
         Name<br>
         ${user}
@@ -45,8 +45,6 @@
         
         <a href="editprofile">Edit Profile</a>
         
-        <a href="login">Logout</a>
-        
-        
+        <a href="login">Logout</a>      
     </body>
 </html>
