@@ -30,30 +30,32 @@
         </div>
     </header>
     <h1>Product Details</h1>
-<c:choose>
-    <c:when test="${not empty productId}">
-
-        <img src="${product.imagePath}" alt="${product.name}" width="200" height="200">
-        <p>
-            Product Name: ${product.name}<br>
-            Description: ${product.description}<br>
-            Price: ${product.price}<br>
-            Stock: ${product.stock}<br>
-        </p>
-        <form method="post" action="CartServlet">
-            <input type="hidden" name="productId" value="${product.productId}">
-            <input type="hidden" name="quantity" value="1"> 
-            <button type="submit">Add to Cart</button>
-        </form>
-    </c:when>
-    <c:otherwise>
-        <p>No product selected.</p>
-    </c:otherwise>
-</c:choose>
-<a href="CartServlet?action=view">
-    <i class="fa fa-shopping-cart"></i> View Cart
-</a>
-
-<a href="login">Logout</a>
+    <c:choose>
+        <c:when test="${not empty param.productId}">
+            <%
+                int productId = Integer.parseInt(request.getParameter("productId"));
+                models.Product product = services.ProductService.get(productId);
+            %>
+            <img src="${product.imagePath}" alt="${product.name}" width="200" height="200">
+            <p>
+                Product Name: ${product.name}<br>
+                Description: ${product.description}<br>
+                Price: ${product.price}<br>
+                Stock: ${product.stock}<br>
+            </p>
+            <form method="post" action="CartServlet?action=add">
+                <input type="hidden" name="productId" value="${product.productId}">
+                <input type="hidden" name="quantity" value="1"> 
+                <button type="submit">Add to Cart</button>
+            </form>
+        </c:when>
+        <c:otherwise>
+            <p>No product selected.</p>
+        </c:otherwise>
+    </c:choose>
+    <a href="CartServlet?action=view">
+        <i class="fa fa-shopping-cart"></i> View Cart
+    </a>
+    <a href="login">Logout</a>
 </body>
 </html>
