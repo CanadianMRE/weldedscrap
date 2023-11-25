@@ -28,42 +28,43 @@ public class CartServlet extends HttpServlet {
    @Override
 protected void doGet(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
-    HttpSession session = request.getSession();
-    String action = request.getParameter("action");
-
-    if (action != null && action.equals("view")) {
-        List<Integer> cart = (List<Integer>) session.getAttribute("cart");
-        if (cart != null) {
-            List<Product> cartProducts = new ArrayList<>();
-            BigDecimal total = new BigDecimal(0);
-            ProductFetcher productService = new ProductFetcher();
-
-            for (Integer productId : cart) {
-                try {
-                    Product product = productService.get(productId);
-                    if (product != null) {
-                        cartProducts.add(product);
-                        total = total.add(product.getPrice());
-                        
-                        System.out.println("Product Name: " + product.getName());
-                        System.out.println("Product Description: " + product.getDescription());
-                    }
-                } catch (Exception ex) {
-                    Logger.getLogger(CartServlet.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-
-            request.setAttribute("cartProducts", cartProducts);
-            request.setAttribute("total", total);
-
-            request.getRequestDispatcher("/WEB-INF/cart.jsp").forward(request, response);
-        } else {
-            request.setAttribute("message", "Your cart is empty.");
-            request.getRequestDispatcher("/WEB-INF/cart.jsp").forward(request, response);
-        }
-    } else {
+//    HttpSession session = request.getSession();
+//    String action = request.getParameter("action");
+//
+//    if (action != null && action.equals("view")) {
+//        List<Integer> cart = (List<Integer>) session.getAttribute("cart");
+//        if (cart != null) {
+//            List<Product> cartProducts = new ArrayList<>();
+//            BigDecimal total = new BigDecimal(0);
+//            ProductFetcher productService = new ProductFetcher();
+//
+//            for (Integer productId : cart) {
+//                try {
+//                    Product product = productService.get(productId);
+//                    if (product != null) {
+//                        cartProducts.add(product);
+//                        total = total.add(product.getPrice());
+//                        
+//                        System.out.println("Product Name: " + product.getName());
+//                        System.out.println("Product Description: " + product.getDescription());
+//                    }
+//                } catch (Exception ex) {
+//                    Logger.getLogger(CartServlet.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//            }
+//
+//            request.setAttribute("cartProducts", cartProducts);
+//            request.setAttribute("total", total);
+//
+//            request.getRequestDispatcher("/WEB-INF/cart.jsp").forward(request, response);
+//        } else {
+//            request.setAttribute("message", "Your cart is empty.");
+//            request.getRequestDispatcher("/WEB-INF/cart.jsp").forward(request, response);
+//        }
+//    } else {
+//        response.sendRedirect("home");
+//    }
         response.sendRedirect("home");
-    }
 }
 
 @Override
