@@ -57,10 +57,8 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response)
             request.setAttribute("cartProducts", cartProducts);
             request.setAttribute("total", total);
 
-            // Forward the request to cart.jsp
             request.getRequestDispatcher("/WEB-INF/cart.jsp").forward(request, response);
         } else {
-            // If the cart is empty, display a message or redirect to a different page
             request.setAttribute("message", "Your cart is empty.");
             request.getRequestDispatcher("/WEB-INF/cart.jsp").forward(request, response);
         }
@@ -90,7 +88,6 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response)
         }
     }
 
-    // Redirect to the previous page (shop or product details)
     String referer = request.getHeader("referer");
     response.sendRedirect(referer);
 }
