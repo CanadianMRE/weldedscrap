@@ -10,6 +10,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Your Cart</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/base.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="./css/cart.css">
 </head>
