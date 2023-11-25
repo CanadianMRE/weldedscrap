@@ -8,7 +8,6 @@ public class DBUtil {
             Persistence.createEntityManagerFactory("WeldedScrapPU");
     
     public static EntityManagerFactory getEmFactory() {
-        System.out.println(emf);
         return emf;
     }
 }

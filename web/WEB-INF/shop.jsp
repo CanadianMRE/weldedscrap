@@ -17,23 +17,7 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     </head>
     <body>
-        <header>
-            <div class="row" id="header_row">
-                <div class="col-4" id="header_left">
-                    <a href="home">WeldedScrap</a>
-                </div>
-                <div class="col-4" id="header_center">
-                    <img src="./images/WeldedScrap.png" id="logo">
-                </div>
-                <div class="col-4" id="header_right">
-                    <a href="login">Login</a>
-                    <a href="register">Register</a>
-                    <a href="CartServlet?action=view" class="btn btn-warning">
-                        <i class="fas fa-shopping-cart"></i> View Cart
-                    </a>
-                </div>
-            </div>
-        </header>
+        <%@include file="./../jspf/Header.jspf" %>
         <h1>Products</h1>
         
         <ul>

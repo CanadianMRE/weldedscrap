@@ -12,20 +12,7 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
         <title>JSP Page</title>
     </head>    
-    <header>
-        <div class="row" id="header_row">
-            <div class="col-4" id="header_left">
-                <a href="home">WeldedScrap</a>
-            </div>
-            <div class="col-4" id="header_center">
-                <img src="./images/logo.png" id="logo">
-            </div>
-            <div class="col-4" id="header_right">
-                <a href="login">Login</a>
-                <a href="register">Register</a>
-            </div>
-        </div>
-    </header>    
+    <%@include file="./../jspf/Header.jspf" %>  
     <body>
         <h1>Edit Profile</h1>
         

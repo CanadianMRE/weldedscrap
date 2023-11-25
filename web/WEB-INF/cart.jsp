@@ -15,32 +15,31 @@
     <link rel="stylesheet" type="text/css" href="./css/cart.css">
 </head>
 <body>
-<header>
+    <%@include file="./../jspf/Header.jspf" %>
     <h1>Shopping Cart</h1>
-</header>
-<div class="cart-items">
-    <c:forEach items="${cartProducts}" var="product">
-        <div class="cart-item">
-            <div class="item-details">
-                <img src="${product.imagePath}" alt="${product.name}" width="100" height="100">
-                <div class="item-info">
-                    <h3>${product.name}</h3>
-                    <p>${product.description}</p>
-                    <p>Price: $${product.price}</p>
+    <div class="cart-items">
+        <c:forEach items="${cartProducts}" var="product">
+            <div class="cart-item">
+                <div class="item-details">
+                    <img src="${product.imagePath}" alt="${product.name}" width="100" height="100">
+                    <div class="item-info">
+                        <h3>${product.name}</h3>
+                        <p>${product.description}</p>
+                        <p>Price: $${product.price}</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </c:forEach>
-</div>
-<div class="cart-summary">
-    <p>Total: $${total}</p>
-    <button class="checkout-button">Checkout</button>
-    <a href="home" class="back-to-shop">Back to Shop</a>
-</div>
-<footer>
-    <p>2023 WeldedScrap.com</p>
-</footer>
-<a href="login">Logout</a>
+        </c:forEach>
+    </div>
+    <div class="cart-summary">
+        <p>Total: $${total}</p>
+        <button class="checkout-button">Checkout</button>
+        <a href="home" class="back-to-shop">Back to Shop</a>
+    </div>
+    <footer>
+        <p>2023 WeldedScrap.com</p>
+    </footer>
+    <a href="login">Logout</a>
 </body>
 </html>
 

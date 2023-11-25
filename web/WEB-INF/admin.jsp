@@ -15,20 +15,7 @@
         <link rel="stylesheet" type="text/css" href="./css/admin.css">
     </head>
     <body>
-        <header>
-            <div class="row" id="header_row">
-                <div class="col-4" id="header_left">
-                    <a href="home">WeldedScrap</a>
-                </div>
-                <div class="col-4" id="header_center">
-                    <img src="./images/WeldedScrap.png" id="logo">
-                </div>
-                <div class="col-4" id="header_right">
-                    <a href="login">Login</a>
-                    <a href="register">Register</a>
-                </div>
-            </div>
-        </header>
+        <%@include file="./../jspf/Header.jspf" %>
         <div class="container">
             <div class="row" id="welcome">
                 <h1>Welcome ${user.firstName}</h1>
