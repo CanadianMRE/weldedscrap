@@ -31,7 +31,7 @@
     </header>
     <h1>Product Details</h1>
 <c:choose>
-    <c:when test="${not empty productId}">
+    <c:when test="${not empty product}">
 
         <img src="${product.imagePath}" alt="${product.name}" width="200" height="200">
         <p>
