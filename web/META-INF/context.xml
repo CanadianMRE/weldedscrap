@@ -3,7 +3,7 @@
     <Resource name="jdbc/welded_scrap" auth="Container" 
         driverClassName="com.mysql.jdbc.Driver"
         url="jdbc:mysql://localhost:3306/welded_scrap" 
-        username="root" password="password" 
+        username="root" password="weldedscrap" 
         maxActive="100" maxIdle="30" maxWait="10000" 
         logAbandoned="true" removeAbandoned="true" 
         removeAbandonedTimeout="60" type="javax.sql.DataSource" />

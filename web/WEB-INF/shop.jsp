@@ -35,118 +35,26 @@
             </div>
         </header>
         <h1>Products</h1>
-        <div class="container text-center" id="product_grid">
-            <div class="row">
-                <div class="col">
-                    <img src="./images/ph1.jpg" id="logo1">
-                    <br>
-                    Item1
-                    <br>
-                    <a href="item?productId=1" class="btn btn-primary">Details</a>
-                    <br>
-                    <form method="post" action="CartServlet?action=add">
-                        <input type="hidden" name="productId" value="1">
-                        <button type="submit" class="btn btn-success">Add to Cart</button>
-                    </form>
-                </div>
-                <div class="col">
-                    <img src="./images/ph2.jpg" id="logo2">
-                    <br>
-                    Item2
-                    <br>
-                    <a href="item?productId=2" class="btn btn-primary">Details</a>
-                    <br>
-                    <form method="post" action="CartServlet?action=add">
-                        <input type="hidden" name="productId" value="2">
-                        <button type="submit" class="btn btn-success">Add to Cart</button>
-                    </form>
-                </div>
-                <div class="col">
-                    <img src="./images/ph3.jpg" id="logo3">
-                    <br>
-                    Item3
-                    <br>
-                    <a href="item?productId=3" class="btn btn-primary">Details</a>
-                    <br>
-                    <form action="CartServlet?action=add" method="post">
-                        <input type="hidden" name="productId" value="3">
-                        <button type="submit" class="btn btn-success">Add to Cart</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="container text-center" id="product_grid">
-            <div class="row">
-                <div class="col">
-                    <img src="./images/ph4.jpg" id="logo4">
-                    <br>
-                    Item4
-                    <br>
-                    <a href="item?productId=4" class="btn btn-primary">Details</a>
-                    <br>
-                    <form action="CartServlet?action=add" method="post">
-                        <input type="hidden" name="productId" value="4">
-                        <button type="submit" class="btn btn-success">Add to Cart</button>
-                    </form>
-                </div>
-                <div class="col">
-                    <img src="./images/ph5.jpg" id="logo5">
-                    <br>
-                    Item5
-                    <br>
-                    <a href="item?productId=5" class="btn btn-primary">Details</a>
-                    <br>
-                    <form action="CartServlet?action=add" method="post">
-                        <input type="hidden" name="productId" value="5">
-                        <button type="submit" class="btn btn-success">Add to Cart</button>
-                    </form>
-                </div>
-                <div class="col">
-                    <img src="./images/ph6.jpg" id="logo6">
-                    <br>
-                    Item6
-                    <br>
-                    <form action="CartServlet?action=add" method="post">
-                        <input type="hidden" name="productId" value="6">
-                        <button type="submit" class="btn btn-success">Add to Cart</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="container text-center" id="product_grid">
-            <div class="row">
-                <div class="col">
-                    <img src="./images/ph7.jpg" id="logo7">
-                    <br>
-                    Item7
-                    <br>
-                    <form action="CartServlet?action=add" method="post">
-                        <input type="hidden" name="productId" value="7">
-                        <button type="submit" class="btn btn-success">Add to Cart</button>
-                    </form>
-                </div>
-                <div class="col">
-                    <img src="./images/ph8.jpg" id="logo8">
-                    <br>
-                    Item8
-                    <br>
-                    <form action="CartServlet?action=add" method="post">
-                        <input type="hidden" name="productId" value="8">
-                        <button type="submit" class="btn btn-success">Add to Cart</button>
-                    </form>
-                </div>
-                <div class="col">
-                    <img src="./images/ph9.jpg" id="logo9">
-                    <br>
-                    Item9
-                    <br>
-                    <form action="CartServlet?action=add" method="post">
-                        <input type="hidden" name="productId" value="9">
-                        <button type="submit" class="btn btn-success">Add to Cart</button>
-                    </form>
-                </div>
-            </div>
-        </div>
+        
+        <ul>
+            <c:forEach items="${products}" var="product">
+                <li>
+                    <div class="col">
+                        <img src="${product.imagePath}" id="logo1">
+                        <br>
+                            ${product.name}
+                        <br>
+                        <a href="item?productId=${product.productId}" class="btn btn-primary">Details</a>
+                        <br>
+                        <form method="post" action="CartServlet?action=add">
+                            <input type="hidden" name="productId" value="${product.productId}">
+                            <button type="submit" class="btn btn-success">Add to Cart</button>
+                        </form>
+                    </div>
+                </li>
+            </c:forEach>
+        </ul>
+        
         <a href="login">Logout</a>
 
         <%
