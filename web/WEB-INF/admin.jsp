@@ -13,6 +13,7 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="./css/admin.css">
+        <link rel="stylesheet" type="text/css" href="./css/Header.css">
     </head>
     <body>
         <%@include file="./../jspf/Header.jspf" %>
@@ -60,49 +61,9 @@
                     </c:forEach>
                 </div>
             </div>
-            <h2>Products</h2>
-            <div class="row">
-                <div class="col">
-                    <c:forEach items="${products}" var="product">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col"></th>
-                                    <th scope="col">Product ID</th>
-                                    <th scope="col">Product Name</th>
-                                    <th scope="col">Stock</th>
-                                    <th scope="col">Actions</th>                              
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><input type="radio"></td>
-                                    <td>${product.productId}</td>
-                                    <td>${product.name}</td>
-                                    <td>${product.stock}</td>
-                                    <td>
-                                        <form method="post" action="editUser">
-                                            <input type="hidden" name="userId" value="${product.productId}">
-                                            <input type="hidden" name="action" value="edit">
-                                            <button type="submit" name="submit" class="btn btn-success">Add</button>
-                                        </form>
-                                        <form method="post" action="deleteUser">
-                                            <input type="hidden" name="userId" value="$${product.productId}">
-                                            <input type="hidden" name="action" value="delete">
-                                            <button type="submit" name="submit" class="btn btn-primary">Edit</button>
-                                        </form>
-                                        <form method="post" action="deleteUser">
-                                            <input type="hidden" name="userId" value="$${product.productId}">
-                                            <input type="hidden" name="action" value="delete">
-                                            <button type="submit" name="submit" class="btn btn-danger">Delete</button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </c:forEach>
-                </div>
-            </div>
+            
+            <a href="https://dashboard.stripe.com/products">View Products</a>
+            
             <p>
                 <a href="login">Logout</a>
             </p>

@@ -6,36 +6,36 @@ package services;
 
 import dataaccess.*;
 import java.util.List;
-import models.Role;
+import models.Roles;
 
 /**
  *
  * @author Jaymen
  */
 public class RoleService {
-    public Role get(Integer id) throws Exception {
+    public Roles get(Integer id) throws Exception {
         RoleDB roleDB = new RoleDB();
-        Role role = roleDB.get(id);
+        Roles role = roleDB.get(id);
         return role;
     }
     
-    public List<Role> getAll() throws Exception {
+    public List<Roles> getAll() throws Exception {
         RoleDB roleDB = new RoleDB();
-        List<Role> roles = roleDB.getAll();
+        List<Roles> roles = roleDB.getAll();
         return roles;
     }
     
-    public void insert(Role role) throws Exception {
+    public void insert(Roles role) throws Exception {
         RoleDB roleDB = new RoleDB();
         roleDB.insert(role);
     }
     
-    public void update(Role role) throws Exception {
+    public void update(Roles role) throws Exception {
         RoleDB roleDB = new RoleDB();
         roleDB.update(role);
     }
     
-    public void delete(Role role) throws Exception {
+    public void delete(Roles role) throws Exception {
         RoleDB roleDB = new RoleDB();
         roleDB.delete(role);
     }

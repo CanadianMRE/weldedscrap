@@ -3,36 +3,36 @@ package dataaccess;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
-import models.Order;
+import models.Orders;
 
 /**
  *
  * @author Jaymen
  */
 public class OrderDB {
-    public static List<Order> getAll() throws Exception {
+    public static List<Orders> getAll() throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         
         try {
-            List<Order> orders = em.createNamedQuery("Order.findAll",Order.class).getResultList();
+            List<Orders> orders = em.createNamedQuery("Orders.findAll",Orders.class).getResultList();
             return orders;
         } finally {
             em.close();
         }
     }
 
-    public static Order get(Integer id) throws Exception {
+    public static Orders get(Integer id) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         
         try {
-            Order order = em.find(Order.class, id);
+            Orders order = em.find(Orders.class, id);
             return order;
         } finally { 
             em.close();
         }
     }
 
-    public static void insert(Order order) throws Exception {
+    public static void insert(Orders order) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
         
@@ -48,7 +48,7 @@ public class OrderDB {
         }
     }
 
-    public static void update(Order order) throws Exception {
+    public static void update(Orders order) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
         
@@ -63,7 +63,7 @@ public class OrderDB {
         }
     }
 
-    public static void delete(Order order) throws Exception {
+    public static void delete(Orders order) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
         

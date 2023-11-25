@@ -32,16 +32,12 @@ public class ItemServlet extends HttpServlet {
         }
 
         try {
-            int productId = Integer.parseInt(productIdStr);
-            System.out.println("PRODUCT ID:"+ productId);
-            ProductService productService = new ProductService();
-            Product product = productService.get(productId);
-            request.setAttribute("product", product);
-            getServletContext().getRequestDispatcher("/WEB-INF/item.jsp").forward(request, response);
-
-    }   catch (Exception ex) {
+            request.setAttribute("product", StripeAccess.get(productIdStr));
+        } catch (Exception ex) {
             Logger.getLogger(ItemServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        getServletContext().getRequestDispatcher("/WEB-INF/item.jsp").forward(request, response);
     }
 
    

@@ -17,8 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import models.Product;
-import services.ProductService;
+import services.StripeAccess;
 
 /**
  *
@@ -37,7 +36,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response)
         if (cart != null) {
             List<Product> cartProducts = new ArrayList<>();
             BigDecimal total = new BigDecimal(0);
-            ProductService productService = new ProductService();
+            ProductFetcher productService = new ProductFetcher();
 
             for (Integer productId : cart) {
                 try {

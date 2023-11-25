@@ -5,6 +5,7 @@
  */
 package servlets;
 
+import com.stripe.model.Product;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
@@ -14,19 +15,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import models.Product;
 import models.Users;
-import services.ProductService;
+import services.StripeAccess;
 
 public class HomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Product> Products;
         
         try {
-            Products = ProductService.getAll();
-            request.setAttribute("products", Products);
+            request.setAttribute("products", StripeAccess.getAll());
         } catch (Exception ex) {
             Logger.getLogger(HomeServlet.class.getName()).log(Level.SEVERE, null, ex);
         }

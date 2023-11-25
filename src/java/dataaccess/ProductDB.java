@@ -8,36 +8,36 @@ package dataaccess;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
-import models.Product;
+import models.Products;
 
 /**
  *
  * @author Jaymen
  */
 public class ProductDB {
-    public static List<Product> getAll() throws Exception {
+    public static List<Products> getAll() throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         
         try {
-            List<Product> products = em.createNamedQuery("Product.findAll",Product.class).getResultList();
+            List<Products> products = em.createNamedQuery("Products.findAll",Products.class).getResultList();
             return products;
         } finally {
             em.close();
         }
     }
 
-    public static Product get(Integer id) throws Exception {
+    public static Products get(String id) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         
         try {
-            Product product = em.find(Product.class, id);
+            Products product = em.find(Products.class, id);
             return product;
         } finally { 
             em.close();
         }
     }
 
-    public static void insert(Product product) throws Exception {
+    public static void insert(Products product) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
         
@@ -53,7 +53,7 @@ public class ProductDB {
         }
     }
 
-    public static void update(Product product) throws Exception {
+    public static void update(Products product) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
         
@@ -68,7 +68,7 @@ public class ProductDB {
         }
     }
 
-    public static void delete(Product product) throws Exception {
+    public static void delete(Products product) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
         

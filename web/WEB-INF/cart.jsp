@@ -13,6 +13,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/base.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="./css/cart.css">
+        <link rel="stylesheet" type="text/css" href="./css/Header.css">
 </head>
 <body>
     <%@include file="./../jspf/Header.jspf" %>

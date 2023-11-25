@@ -15,9 +15,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import models.Product;
 import models.Users;
-import services.ProductService;
+import services.StripeAccess;
 import services.UserService;
 
 /**
@@ -28,116 +27,10 @@ public class AdminServlet extends HttpServlet {
     
     private void getBasePage(HttpServletRequest request, HttpServletResponse response) throws Exception {
         List<Users> users = UserService.getAll();
-        List<Product> products = ProductService.getAll();
         
         request.setAttribute("users", users);
-        request.setAttribute("products", products);
         
         getServletContext().getRequestDispatcher("/WEB-INF/admin.jsp").forward(request, response);
-    }
-    
-    private void addProduct(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String rawName = request.getParameter("productName");
-        String rawDesc = request.getParameter("productDesc");
-        String rawStock = request.getParameter("productStock");
-        String rawPrice = request.getParameter("productPrice");
-        
-        
-        if (rawName == null) {
-            getBasePage(request, response);
-            return;
-        }
-        
-        if (rawDesc == null) {
-            getBasePage(request, response);
-            return;
-        }
-        
-        if (rawStock == null) {
-            getBasePage(request, response);
-            return;
-        }
-        
-        if (rawPrice == null) {
-            getBasePage(request, response);
-            return;
-        }
-        
-        int stockval = Integer.parseInt(rawStock);
-        BigDecimal price = BigDecimal.valueOf(Double.parseDouble(rawPrice));
-        
-        Product product = new Product(null, rawName, rawDesc, stockval, price);
-        
-        ProductService.insert(product);
-        
-        getBasePage(request, response);
-    }
-    
-    private void editProduct(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String rawId = request.getParameter("productId");
-        String rawName = request.getParameter("productName");
-        String rawDesc = request.getParameter("productDesc");
-        String rawStock = request.getParameter("productStock");
-        String rawPrice = request.getParameter("productPrice");
-        
-        if (rawId == null) {
-            getBasePage(request, response);
-            return;
-        }
-        
-        if (rawName == null) {
-            getBasePage(request, response);
-            return;
-        }
-        
-        if (rawDesc == null) {
-            getBasePage(request, response);
-            return;
-        }
-        
-        if (rawStock == null) {
-            getBasePage(request, response);
-            return;
-        }
-        
-        if (rawPrice == null) {
-            getBasePage(request, response);
-            return;
-        }
-        
-        Integer productId = Integer.valueOf(rawId);
-        int stockval = Integer.parseInt(rawStock);
-        BigDecimal price = BigDecimal.valueOf(Double.parseDouble(rawPrice));
-        
-        Product oldProduct = ProductService.get(productId);
-        
-        oldProduct.setName(rawName);
-        oldProduct.setDescription(rawDesc);
-        oldProduct.setPrice(price);
-        oldProduct.setStock(stockval);
-        
-        ProductService.update(oldProduct);
-        
-        getBasePage(request, response);
-    }
-    
-    private void removeProduct(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String rawId = request.getParameter("productId");
-        
-        if (rawId == null) {
-            getBasePage(request, response);
-            return;
-        }
-        
-        Integer removeId = Integer.valueOf(rawId);
-        
-        Product removeProduct = ProductService.get(removeId);
-        
-        if (removeProduct != null) {
-            ProductService.delete(removeProduct);
-        }
-        
-        getBasePage(request, response);
     }
     
     private void editUser(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -208,32 +101,6 @@ public class AdminServlet extends HttpServlet {
         getBasePage(request, response);
     }
     
-    private void showEditProduct(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String rawId = request.getParameter("productId");
-        
-        if (rawId == null) {
-            getBasePage(request, response);
-            return;
-        }
-        
-        Integer editId = Integer.valueOf(rawId);
-        
-        Product editProduct = ProductService.get(editId);
-        
-        if (editProduct == null) {
-            getBasePage(request, response);
-            return;
-        }
-        
-        request.setAttribute("product", editProduct);
-        
-        getServletContext().getRequestDispatcher("/WEB-INF/editProduct.jsp").forward(request, response);
-    }
-    
-    private void showAddProduct(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        getServletContext().getRequestDispatcher("/WEB-INF/addProduct.jsp").forward(request, response);
-    }
-    
     private void showEditUser(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String rawId = request.getParameter("userId");
         
@@ -271,23 +138,8 @@ public class AdminServlet extends HttpServlet {
             case "editUser":
                 editUser(request, response);
                 break;
-            case "showEditProduct":
-                showEditProduct(request, response);
-                break;
-            case "showAddProduct":
-                showAddProduct(request, response);
-                break;
             case "showEditUser":
                 showEditUser(request, response);
-                break;
-            case "addProduct":
-                addProduct(request, response);
-                break;
-            case "editProduct":
-                editProduct(request, response);
-                break;
-            case "deleteProduct":
-                removeProduct(request, response);
                 break;
             default:
                 getBasePage(request, response);

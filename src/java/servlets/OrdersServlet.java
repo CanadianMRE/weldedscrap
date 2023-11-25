@@ -15,9 +15,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import models.Product;
 import models.Users;
-import services.ProductService;
+import services.StripeAccess;
 import services.UserService;
 
 /**
@@ -28,10 +27,8 @@ public class OrdersServlet extends HttpServlet {
     
     private void getBasePage(HttpServletRequest request, HttpServletResponse response) throws Exception {
         List<Users> users = UserService.getAll();
-        List<Product> products = ProductService.getAll();
         
         request.setAttribute("users", users);
-        request.setAttribute("products", products);
         
         getServletContext().getRequestDispatcher("/WEB-INF/admin.jsp").forward(request, response);
     }
@@ -66,9 +63,9 @@ public class OrdersServlet extends HttpServlet {
         int stockval = Integer.parseInt(rawStock);
         BigDecimal price = BigDecimal.valueOf(Double.parseDouble(rawPrice));
         
-        Product product = new Product(null, rawName, rawDesc, stockval, price);
-        
-        ProductService.insert(product);
+//        Product product = new Product(null, rawName, rawDesc, stockval, price);
+//        
+//        ProductFetcher.insert(product);
         
         getBasePage(request, response);
     }

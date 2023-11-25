@@ -8,36 +8,36 @@ package dataaccess;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
-import models.Role;
+import models.Roles;
 
 /**
  *
  * @author Jaymen
  */
 public class RoleDB {
-     public static List<Role> getAll() throws Exception {
+     public static List<Roles> getAll() throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         
         try {
-            List<Role> roles = em.createNamedQuery("Role.findAll",Role.class).getResultList();
+            List<Roles> roles = em.createNamedQuery("Roles.findAll",Roles.class).getResultList();
             return roles;
         } finally {
             em.close();
         }
     }
 
-    public static Role get(Integer id) throws Exception {
+    public static Roles get(Integer id) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         
         try {
-            Role role = em.find(Role.class, id);
+            Roles role = em.find(Roles.class, id);
             return role;
         } finally { 
             em.close();
         }
     }
 
-    public static void insert(Role role) throws Exception {
+    public static void insert(Roles role) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
         
@@ -53,7 +53,7 @@ public class RoleDB {
         }
     }
 
-    public static void update(Role role) throws Exception {
+    public static void update(Roles role) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
         
@@ -68,7 +68,7 @@ public class RoleDB {
         }
     }
 
-    public static void delete(Role role) throws Exception {
+    public static void delete(Roles role) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
         

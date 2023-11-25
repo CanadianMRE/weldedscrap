@@ -11,6 +11,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
         <title>JSP Page</title>
+        <link rel="stylesheet" type="text/css" href="./css/Header.css">
     </head>    
     <%@include file="./../jspf/Header.jspf" %>  
     <body>

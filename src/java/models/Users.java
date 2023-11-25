@@ -1,6 +1,7 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package models;
 
@@ -11,9 +12,10 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -25,23 +27,24 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Jaymen
+ * @author WeldedScrap
  */
 @Entity
 @Table(name = "users")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Users.findAll", query = "SELECT u FROM Users u"),
-    @NamedQuery(name = "Users.findByUserId", query = "SELECT u FROM Users u WHERE u.userId = :userId"),
-    @NamedQuery(name = "Users.findByFirstName", query = "SELECT u FROM Users u WHERE u.firstName = :firstName"),
-    @NamedQuery(name = "Users.findByLastName", query = "SELECT u FROM Users u WHERE u.lastName = :lastName"),
-    @NamedQuery(name = "Users.findByEmail", query = "SELECT u FROM Users u WHERE u.email = :email"),
-    @NamedQuery(name = "Users.findByPassword", query = "SELECT u FROM Users u WHERE u.password = :password"),
-    @NamedQuery(name = "Users.findByAddress", query = "SELECT u FROM Users u WHERE u.address = :address")})
+    @NamedQuery(name = "Users.findAll", query = "SELECT u FROM Users u")
+    , @NamedQuery(name = "Users.findByUserId", query = "SELECT u FROM Users u WHERE u.userId = :userId")
+    , @NamedQuery(name = "Users.findByFirstName", query = "SELECT u FROM Users u WHERE u.firstName = :firstName")
+    , @NamedQuery(name = "Users.findByLastName", query = "SELECT u FROM Users u WHERE u.lastName = :lastName")
+    , @NamedQuery(name = "Users.findByEmail", query = "SELECT u FROM Users u WHERE u.email = :email")
+    , @NamedQuery(name = "Users.findByPassword", query = "SELECT u FROM Users u WHERE u.password = :password")
+    , @NamedQuery(name = "Users.findByAddress", query = "SELECT u FROM Users u WHERE u.address = :address")})
 public class Users implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "userId")
     private Integer userId;
@@ -55,31 +58,17 @@ public class Users implements Serializable {
     private String password;
     @Column(name = "address")
     private String address;
-    @JoinTable(name = "cart_product", joinColumns = {
-        @JoinColumn(name = "userid", referencedColumnName = "userId")}, inverseJoinColumns = {
-        @JoinColumn(name = "productid", referencedColumnName = "productId")})
-    @ManyToMany(fetch = FetchType.EAGER)
-    private List<Product> productList;
+    @ManyToMany(mappedBy = "usersList", fetch = FetchType.EAGER)
+    private List<Products> productsList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId", fetch = FetchType.EAGER)
+    private List<Orders> ordersList;
     @JoinColumn(name = "roleId", referencedColumnName = "roleId")
     @ManyToOne(fetch = FetchType.EAGER)
-    private Role roleId;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId", fetch = FetchType.EAGER)
-    private List<Order> order1List;
+    private Roles roleId;
 
     public Users() {
     }
 
-    public Users(String email) {
-        this.email = email;
-    }
-
-    public Users(String email, String firstName, String lastName, String password) {
-        this.email = email;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.password = password;
-    }
-    
     public Users(Integer userId) {
         this.userId = userId;
     }
@@ -133,29 +122,29 @@ public class Users implements Serializable {
     }
 
     @XmlTransient
-    public List<Product> getProductList() {
-        return productList;
+    public List<Products> getProductsList() {
+        return productsList;
     }
 
-    public void setProductList(List<Product> productList) {
-        this.productList = productList;
-    }
-
-    public Role getRoleId() {
-        return roleId;
-    }
-
-    public void setRoleId(Role roleId) {
-        this.roleId = roleId;
+    public void setProductsList(List<Products> productsList) {
+        this.productsList = productsList;
     }
 
     @XmlTransient
-    public List<Order> getOrder1List() {
-        return order1List;
+    public List<Orders> getOrdersList() {
+        return ordersList;
     }
 
-    public void setOrder1List(List<Order> order1List) {
-        this.order1List = order1List;
+    public void setOrdersList(List<Orders> ordersList) {
+        this.ordersList = ordersList;
+    }
+
+    public Roles getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(Roles roleId) {
+        this.roleId = roleId;
     }
 
     @Override

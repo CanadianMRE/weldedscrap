@@ -76,9 +76,12 @@ public class RegistrationServlet extends HttpServlet {
         }
 
         try {
-            Users newUser = new Users(email, firstName, lastName, password);
-            Role userRole = roleService.get(2);
-            newUser.setRoleId(userRole);
+            Users newUser = new Users();
+            newUser.setEmail(email);
+            newUser.setFirstName(firstName);
+            newUser.setLastName(lastName);
+            newUser.setPassword(password);
+            newUser.setRoleId(roleService.get(2));
             userService.insert(newUser);
             
             
