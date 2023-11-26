@@ -37,7 +37,7 @@
                         <br>
                         <a href="item?productId=${product.getId()}" class="btn btn-primary">Details</a>
                         <br>
-                        <form method="post" action="CartServlet?action=add">
+                        <form method="post" action="cart?action=add">
                             <input type="hidden" name="productId" value="${product.getId()}">
                             <button type="submit" class="btn btn-success">Add to Cart</button>
                         </form>

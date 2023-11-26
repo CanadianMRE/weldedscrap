@@ -36,7 +36,7 @@
                 Price: ${product.getDefaultPriceObject().getUnitAmount()}<br>
                 Stock: 
             </p>
-            <form method="post" action="CartServlet?action=add">
+            <form method="post" action="cart?action=add">
                 <input type="hidden" name="productId" value="${product.getId()}">
                 <input type="hidden" name="quantity" value="1"> 
                 <button type="submit">Add to Cart</button>
@@ -46,7 +46,7 @@
             <p>No product selected.</p>
         </c:otherwise>
     </c:choose>
-    <a href="CartServlet?action=view">
+    <a href="cart?action=view">
         <i class="fa fa-shopping-cart"></i> View Cart
     </a>
     <a href="login">Logout</a>
