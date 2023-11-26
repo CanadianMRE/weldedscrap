@@ -28,7 +28,11 @@ public class VerificationService {
             return false;
         }
         
-        return PASSWORD_REGEX.matcher(Password).matches();
+        if (Password.length() < 5) {
+            return false;
+        }
+        
+        return true;
     }
     
     public static boolean verifyName(String name) {
@@ -36,6 +40,10 @@ public class VerificationService {
             return false;
         }
         
-        return NAME_REGEX.matcher(name).matches();
+        if (name.length() < 1 || name.length() > 100) {
+            return false;
+        }
+        
+        return true;
     }
 }
