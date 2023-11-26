@@ -75,9 +75,23 @@ public class CartServlet extends HttpServlet {
             session.setAttribute("cart", cart);
         }
 
+        System.out.println("Action: " + action); // Print the action to console
+
         if ("add".equals(action)) {
             String productId = request.getParameter("productId");
-            cart.add(productId);
+            System.out.println("Adding Product ID: " + productId); // Print the product ID being added
+            if (productId != null && !productId.isEmpty()) {
+                cart.add(productId);
+            }
+        } else if ("remove".equals(action)) {
+            String productId = request.getParameter("productId");
+            System.out.println("Removing Product ID: " + productId); // Print the product ID being removed
+            if (productId != null && !productId.isEmpty()) {
+                cart.remove(productId); // Remove the product by ID
+                System.out.println("Product removed from cart."); // Confirm removal
+            } else {
+                System.out.println("Product ID is null or empty for removal.");
+            }
         }
 
         String referer = request.getHeader("Referer");
