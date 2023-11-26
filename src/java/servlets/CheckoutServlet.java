@@ -25,7 +25,7 @@ public class CheckoutServlet extends HttpServlet {
             throws ServletException, IOException {
          try {
              StripeAccess.PurchaseItems(request, response);
-         } catch (StripeException ex) {
+         } catch (Exception ex) {
              Logger.getLogger(CheckoutServlet.class.getName()).log(Level.SEVERE, null, ex);
              response.sendRedirect("home");
          }
