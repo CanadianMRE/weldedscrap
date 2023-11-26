@@ -19,20 +19,25 @@
     <%@include file="./../jspf/Header.jspf" %>
     <h1>Product Details</h1>
     <c:choose>
-        <c:when test="${not empty param.productId}">
-            <%
-                int productId = Integer.parseInt(request.getParameter("productId"));
-                models.Product product = services.ProductService.get(productId);
-            %>
-            <img src="${product.imagePath}" alt="${product.name}" width="200" height="200">
+        <c:when test="${not empty product}">
+            
+            <c:if test = "${product.getImages().size() > 0}">
+                               <img src="${product.getImages().get(0)}" alt="${product.getName()}" width="200" height="200">
+                        </c:if>
+                            
+                        <c:if test = "${product.getImages().size() == 0}">
+                        <img src="./images/logo.png" alt="${product.name}" width="200" height="200">
+                        </c:if>
+            
+         
             <p>
-                Product Name: ${product.name}<br>
-                Description: ${product.description}<br>
-                Price: ${product.price}<br>
-                Stock: ${product.stock}<br>
+                Product Name: ${product.getName()}<br>
+                Description: ${product.getDescription()}<br>
+                Price: ${product.getDefaultPriceObject().getUnitAmount()}<br>
+                Stock: 
             </p>
-            <form method="post" action="CartServlet?action=add">
-                <input type="hidden" name="productId" value="${product.productId}">
+            <form method="post" action="cart?action=add">
+                <input type="hidden" name="productId" value="${product.getId()}">
                 <input type="hidden" name="quantity" value="1"> 
                 <button type="submit">Add to Cart</button>
             </form>
@@ -41,7 +46,7 @@
             <p>No product selected.</p>
         </c:otherwise>
     </c:choose>
-    <a href="CartServlet?action=view">
+    <a href="cart?action=view">
         <i class="fa fa-shopping-cart"></i> View Cart
     </a>
     <a href="login">Logout</a>

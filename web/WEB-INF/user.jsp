@@ -20,20 +20,25 @@
     <body>
         <h1>Your Profile</h1>
         
-        Name<br>
-        ${user}
-        
-        Email<br>
-        ${email}
-        
-        Address<br>
-        ${address}
-        
-        Phone Number<br>
-        ${phone}
-        
-        <a href="editprofile">Edit Profile</a>
-        
-        <a href="login">Logout</a>      
+        <form action="profile">
+            <label for="fName">First Name: </label>
+            <input type="text" id="fName" name="fName" value="${user.getFirstName()}"><br><br>
+            <label for="lName">Last Name: </label>
+            <input type="text" id="lName" name="lName" value="${user.getLastName()}"><br><br>
+            <label for="email">Email: </label>
+            <input type="text" id="email" name="email" value="${user.getEmail()}"><br><br>
+            <label for="address">Address: </label>
+            <input type="text" id="address" name="address" value="${user.getAddress()}"><br><br>
+            <label for="newPassword">New Password: </label>
+            <input type="password" id="pnum" name="newPassword"><br><br>
+            <input type="hidden" name="action" value="submitProfileEdits">
+            
+            <label for="password">Password: </label>
+            <input type="password" id="password" name="password"><br><br>
+            <br>
+            ${response}
+            <br>
+            <input type="submit" value="Submit">
+        </form>
     </body>
 </html>

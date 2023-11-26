@@ -8,7 +8,6 @@ package models;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -20,7 +19,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -60,8 +58,6 @@ public class Users implements Serializable {
     private String address;
     @ManyToMany(mappedBy = "usersList", fetch = FetchType.EAGER)
     private List<Products> productsList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId", fetch = FetchType.EAGER)
-    private List<Orders> ordersList;
     @JoinColumn(name = "roleId", referencedColumnName = "roleId")
     @ManyToOne(fetch = FetchType.EAGER)
     private Roles roleId;
@@ -128,15 +124,6 @@ public class Users implements Serializable {
 
     public void setProductsList(List<Products> productsList) {
         this.productsList = productsList;
-    }
-
-    @XmlTransient
-    public List<Orders> getOrdersList() {
-        return ordersList;
-    }
-
-    public void setOrdersList(List<Orders> ordersList) {
-        this.ordersList = ordersList;
     }
 
     public Roles getRoleId() {

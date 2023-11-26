@@ -1,10 +1,5 @@
-<%-- 
-    Document   : shop
-    Created on : 30-Sep-2023, 11:09:44 AM
-    Author     : Jaymen
---%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.util.List" %>
 <%@page import="java.util.ArrayList" %>
 <!DOCTYPE html>
@@ -19,42 +14,45 @@
     </head>
     <body>
         <%@include file="./../jspf/Header.jspf" %>
-        <h1>Products</h1>
-        
-        <ul>
-            <c:forEach items="${products}" var="product">
-                <li>
-                    <div class="col">
-                        <c:if test = "${product.getImages().size() > 0}">
-                            <img src="${product.getImages().get(0)}" id="logo1">
-                        </c:if>
-                            
-                        <c:if test = "${product.getImages().size() == 0}">
-                            <img src="./images/logo.png" id="logo1">
-                        </c:if>
-                        <br>
-                            ${product.getName()}
-                        <br>
-                        <a href="item?productId=${product.getId()}" class="btn btn-primary">Details</a>
-                        <br>
-                        <form method="post" action="CartServlet?action=add">
-                            <input type="hidden" name="productId" value="${product.getId()}">
-                            <button type="submit" class="btn btn-success">Add to Cart</button>
-                        </form>
-                    </div>
-                </li>
-            </c:forEach>
-        </ul>
-        
-        <a href="login">Logout</a>
+        <div class="container">
+            <h1>Products</h1>
+            <ul class="row list-unstyled">
+                <c:forEach items="${products}" var="product" varStatus="loop">
+                    <li class="col-4 d-flex flex-column align-items-center">
+                        <div class="card">
+                            <c:if test="${product.getImages().size() > 0}">
+                                <img src="${product.getImages().get(0)}" class="card-img-top" alt="Product Image">
+                            </c:if>
+                            <c:if test="${product.getImages().size() == 0}">
+                                <img src="./images/logo.png" class="card-img-top" alt="Product Image">
+                            </c:if>
+                            <div class="card-body">
+                                <h5 class="card-title text-center">${product.getName()}</h5>
+                                <a href="item?productId=${product.getId()}" class="btn btn-primary">Details</a>
+                                <form method="post" action="CartServlet?action=add" class="mt-1">
+                                    <input type="hidden" name="productId" value="${product.getId()}">
+                                    <button type="submit" class="btn btn-success">Add to Cart</button>
+                                </form>
+                            </div>
+                        </div>
+                    </li>
+                    <%-- Insert a new row after every third product --%>
+                    <c:if test="${loop.index % 3 == 2 && not loop.last}">
+                    </ul>
+                    <ul class="row list-unstyled">
+                    </c:if>
+                </c:forEach>
+            </ul>
+            <a href="login">Logout</a>
 
-        <%
-            List<Integer> cart = (List<Integer>) session.getAttribute("cart");
-            if (cart == null) {
-                cart = new ArrayList<>();
-                session.setAttribute("cart", cart);
-            }
-        %>
+            <%
+                List<Integer> cart = (List<Integer>) session.getAttribute("cart");
+                if (cart == null) {
+                    cart = new ArrayList<>();
+                    session.setAttribute("cart", cart);
+                }
+            %>
+        </div>
     </body>
-
 </html>
+

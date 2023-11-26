@@ -6,8 +6,6 @@
 package servlets;
 
 import java.io.IOException;
-import java.util.List;
-import java.math.BigDecimal;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -18,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import models.Users;
 import services.UserService;
 import services.VerificationService;
+import services.AccountService;
 
 /**
  *
@@ -35,24 +34,6 @@ public class UserServlet extends HttpServlet {
         getServletContext().getRequestDispatcher("/WEB-INF/user.jsp").forward(request, response);
     }
     
-    private void updateEmail(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String rawEmail = request.getParameter("newEmail");
-        
-        if (!VerificationService.verifyEmail(rawEmail)) {
-            getBasePage(request, response);
-            return;
-        }
-        
-        HttpSession session = request.getSession();
-        Users user = (Users) session.getAttribute("user");
-        
-        user.setEmail(rawEmail);
-        
-        UserService.update(user);
-        
-        getBasePage(request, response);
-    }
-    
     private void deleteAccount(HttpServletRequest request, HttpServletResponse response) throws Exception {
         HttpSession session = request.getSession();
         Users user = (Users) session.getAttribute("user");
@@ -60,75 +41,64 @@ public class UserServlet extends HttpServlet {
         UserService.delete(user);
     }
     
-    private void changePassword(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String rawPassword = request.getParameter("newPassword");
-        
-        if (!VerificationService.verifyPassword(rawPassword)) {
-            getBasePage(request, response);
-            return;
-        }
-        
-        HttpSession session = request.getSession();
-        Users user = (Users) session.getAttribute("user");
-        
-        user.setPassword(rawPassword);
-        
-        UserService.update(user);
-        
-        getBasePage(request, response);
-    }
-    
-    private void changeAddress(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String rawAddress = request.getParameter("newAddress");
-        
-        if (rawAddress == null) {
-            getBasePage(request, response);
-            return;
-        }
+    private void updateAccount(HttpServletRequest request, HttpServletResponse response) throws Exception{
+        String actualPassword = request.getParameter("password");
+        String newPassword = request.getParameter("newPassword");
+        String newEmail = request.getParameter("email");
+        String newFName = request.getParameter("fName");
+        String newLName = request.getParameter("lName");
+        String newAddress = request.getParameter("address");
         
         HttpSession session = request.getSession();
         Users user = (Users) session.getAttribute("user");
         
-        user.setPassword(rawAddress);
-        
-        UserService.update(user);
-        
-        getBasePage(request, response);
-    }
-    
-    private void changeFName(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String rawPassword = request.getParameter("newFname");
-        
-        if (!VerificationService.verifyName(rawPassword)) {
+        if (!user.getPassword().equals(actualPassword)) {
+            request.setAttribute("response", "Wrong password");
             getBasePage(request, response);
             return;
         }
         
-        HttpSession session = request.getSession();
-        Users user = (Users) session.getAttribute("user");
-        
-        user.setPassword(rawPassword);
-        
-        UserService.update(user);
-        
-        getBasePage(request, response);
-    }
-    
-    private void changeLName(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String rawPassword = request.getParameter("newLName");
-        
-        if (!VerificationService.verifyName(rawPassword)) {
+        if (!VerificationService.verifyEmail(newEmail)) {
+            request.setAttribute("response", "Invalid email");
             getBasePage(request, response);
             return;
         }
         
-        HttpSession session = request.getSession();
-        Users user = (Users) session.getAttribute("user");
+        if (!VerificationService.verifyName(newFName)) {
+            request.setAttribute("response", "First name is too short or too long");
+            getBasePage(request, response);
+            return;
+        }
         
-        user.setPassword(rawPassword);
+        if (!VerificationService.verifyName(newLName)) {
+            request.setAttribute("response", "Last name is too short or too long");
+            getBasePage(request, response);
+            return;
+        }
         
+        if (!VerificationService.verifyName(newAddress)) {
+            request.setAttribute("response", "");
+            getBasePage(request, response);
+            return;
+        }
+        
+        if (!newPassword.equals("")) {
+            if (!VerificationService.verifyPassword(newPassword)) {
+                request.setAttribute("response", "Password must be atleast 5 characters long");
+                getBasePage(request, response);
+                return;
+            } else {
+                user.setPassword(newPassword);
+            }
+        }
+        
+        user.setEmail(newEmail);
+        user.setFirstName(newFName);
+        user.setLastName(newLName);
+        user.setAddress(newAddress);
+        
+        request.setAttribute("response", "Updated user information");
         UserService.update(user);
-        
         getBasePage(request, response);
     }
         
@@ -144,20 +114,8 @@ public class UserServlet extends HttpServlet {
             case "deleteAccount":
                 deleteAccount(request, response);
                 break;
-            case "changeEmail":
-                updateEmail(request, response);
-                break;
-            case "changePassword":
-                changePassword(request, response);
-                break;
-            case "changeAddress":
-                changeAddress(request, response);
-                break;
-            case "changeFName":
-                changeFName(request, response);
-                break;
-            case "changeLName":
-                changeLName(request, response);
+            case "submitProfileEdits":
+                updateAccount(request, response);
                 break;
             default:
                 getBasePage(request, response);

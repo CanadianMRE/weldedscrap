@@ -8,6 +8,7 @@ package services;
 
 
 import com.stripe.Stripe;
+import com.stripe.exception.StripeException;
 import com.stripe.model.Product;
 import com.stripe.model.ProductCollection;
 import com.stripe.model.checkout.Session;
@@ -15,11 +16,18 @@ import com.stripe.param.ProductListParams;
 import com.stripe.param.SubscriptionItemCreateParams;
 import com.stripe.param.checkout.SessionCreateParams;
 import com.stripe.param.checkout.SessionCreateParams.*;
+import java.io.IOException;
 import java.lang.instrument.Instrumentation;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Consumer;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import models.Users;
 
 /**
  *
@@ -58,20 +66,57 @@ public class StripeAccess {
         return productList;
     }
     
-    public static void CreateSession() {
+    public static void PurchaseItems(HttpServletRequest request, HttpServletResponse response) throws IOException, StripeException, Exception {
+        HttpSession session = request.getSession();
+        
+        List<String> cart = (List<String>) session.getAttribute("cart");
+        
+        if (cart == null) {
+            response.sendRedirect("home");
+            return;
+        }
+        
         Stripe.apiKey = API_KEY;
         
         Builder sessionBuild =
                 SessionCreateParams.builder()
                 .setMode(SessionCreateParams.Mode.PAYMENT)
-                .setSuccessUrl(MY_DOMAIN + "/successPayment")
-                .setCancelUrl(MY_DOMAIN + "/cancelPayment")
-                .setAutomaticTax(
+//                .setSuccessUrl(MY_DOMAIN + "/genericMessage?bigMessage=Success")
+//                .setCancelUrl(MY_DOMAIN + "/genericMessage?bigMessage=Failed&message=Purchase Failed")
+                .setSuccessUrl(MY_DOMAIN + "/home")
+                .setCancelUrl(MY_DOMAIN + "/home")
+               .setAutomaticTax(
                         SessionCreateParams.AutomaticTax.builder()
                         .setEnabled(true)
                         .build()
                 );
         
+        Map<String, Long> itemInfo = new HashMap<>();
+        
+        for (String item : cart) {
+            if (itemInfo.containsKey(item)) {
+                Long count = itemInfo.remove(item);
+                count += 1;
+                itemInfo.put(item, count);
+            } else {
+                itemInfo.put(item, 1L);
+            }
+        }
+        
+        for (Map.Entry<String, Long> entry : itemInfo.entrySet()) {
+            Product itemObject = get(entry.getKey());
+            LineItem lineItem = SessionCreateParams.LineItem.builder()
+                .setPrice(itemObject.getDefaultPrice())
+                .setQuantity(entry.getValue())
+                .build();
+            
+            sessionBuild.addLineItem(lineItem);
+        }
+        
         SessionCreateParams params = sessionBuild.build();
+        
+        Session stripeSession = Session.create(params);
+        
+        response.sendRedirect(stripeSession.getUrl());
     }
 }
