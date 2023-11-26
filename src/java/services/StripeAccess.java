@@ -19,8 +19,10 @@ import com.stripe.param.checkout.SessionCreateParams.*;
 import java.io.IOException;
 import java.lang.instrument.Instrumentation;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Consumer;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -64,7 +66,7 @@ public class StripeAccess {
         return productList;
     }
     
-    public static void PurchaseItems(HttpServletRequest request, HttpServletResponse response) throws IOException, StripeException {
+    public static void PurchaseItems(HttpServletRequest request, HttpServletResponse response) throws IOException, StripeException, Exception {
         HttpSession session = request.getSession();
         
         List<String> cart = (List<String>) session.getAttribute("cart");
@@ -79,18 +81,34 @@ public class StripeAccess {
         Builder sessionBuild =
                 SessionCreateParams.builder()
                 .setMode(SessionCreateParams.Mode.PAYMENT)
-                .setSuccessUrl(MY_DOMAIN + "/genericMessage?bigMessage=Success")
-                .setCancelUrl(MY_DOMAIN + "/genericMessage?bigMessage=Failed&message=Purchase Failed")
-                .setAutomaticTax(
+//                .setSuccessUrl(MY_DOMAIN + "/genericMessage?bigMessage=Success")
+//                .setCancelUrl(MY_DOMAIN + "/genericMessage?bigMessage=Failed&message=Purchase Failed")
+                .setSuccessUrl(MY_DOMAIN + "/home")
+                .setCancelUrl(MY_DOMAIN + "/home")
+               .setAutomaticTax(
                         SessionCreateParams.AutomaticTax.builder()
                         .setEnabled(true)
                         .build()
                 );
         
+        Map<String, Long> itemInfo = new HashMap<>();
+        
         for (String item : cart) {
+            if (itemInfo.containsKey(item)) {
+                Long count = itemInfo.remove(item);
+                count += 1;
+                itemInfo.put(item, count);
+            } else {
+                itemInfo.put(item, 1L);
+            }
+        }
+        
+        for (Map.Entry<String, Long> entry : itemInfo.entrySet()) {
+            Product itemObject = get(entry.getKey());
             LineItem lineItem = SessionCreateParams.LineItem.builder()
-                    .setPrice(item)
-                    .build();
+                .setPrice(itemObject.getDefaultPrice())
+                .setQuantity(entry.getValue())
+                .build();
             
             sessionBuild.addLineItem(lineItem);
         }
