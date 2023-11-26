@@ -39,6 +39,9 @@
     </div>
     <div class="cart-summary">
         <p>Total: $${total}</p>
+        <form action="checkout">
+            <input type="submit" value="Checkout">
+        </form>
         <button class="checkout-button">Checkout</button>
         <a href="home" class="back-to-shop">Back to Shop</a>
     </div>
