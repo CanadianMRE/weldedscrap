@@ -22,11 +22,16 @@
         <c:forEach items="${cartProducts}" var="product">
             <div class="cart-item">
                 <div class="item-details">
-                    <img src="${product.imagePath}" alt="${product.name}" width="100" height="100">
+                     <c:if test = "${product.getImages().size() > 0}">
+                               <img src="${product.getImages().get(0)}" alt="${product.getName()}" width="200" height="200">
+                        </c:if>
+                      <c:if test = "${product.getImages().size() == 0}">
+                        <img src="./images/logo.png" alt="${product.name}" width="200" height="200">
+                        </c:if>
                     <div class="item-info">
-                        <h3>${product.name}</h3>
-                        <p>${product.description}</p>
-                        <p>Price: $${product.price}</p>
+                         <h3>${product.getName()}</h3>
+                        <p>${product.getDescription()}</p>
+                         <p>Price: $${product.getDefaultPriceObject().getUnitAmount()}</p>
                     </div>
                 </div>
             </div>

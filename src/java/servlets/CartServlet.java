@@ -5,6 +5,7 @@
  */
 package servlets;
 
+import com.stripe.model.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
@@ -25,70 +26,61 @@ import services.StripeAccess;
  */
 public class CartServlet extends HttpServlet {
 
-   @Override
-protected void doGet(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {
-//    HttpSession session = request.getSession();
-//    String action = request.getParameter("action");
-//
-//    if (action != null && action.equals("view")) {
-//        List<Integer> cart = (List<Integer>) session.getAttribute("cart");
-//        if (cart != null) {
-//            List<Product> cartProducts = new ArrayList<>();
-//            BigDecimal total = new BigDecimal(0);
-//            ProductFetcher productService = new ProductFetcher();
-//
-//            for (Integer productId : cart) {
-//                try {
-//                    Product product = productService.get(productId);
-//                    if (product != null) {
-//                        cartProducts.add(product);
-//                        total = total.add(product.getPrice());
-//                        
-//                        System.out.println("Product Name: " + product.getName());
-//                        System.out.println("Product Description: " + product.getDescription());
-//                    }
-//                } catch (Exception ex) {
-//                    Logger.getLogger(CartServlet.class.getName()).log(Level.SEVERE, null, ex);
-//                }
-//            }
-//
-//            request.setAttribute("cartProducts", cartProducts);
-//            request.setAttribute("total", total);
-//
-//            request.getRequestDispatcher("/WEB-INF/cart.jsp").forward(request, response);
-//        } else {
-//            request.setAttribute("message", "Your cart is empty.");
-//            request.getRequestDispatcher("/WEB-INF/cart.jsp").forward(request, response);
-//        }
-//    } else {
-//        response.sendRedirect("home");
-//    }
-        response.sendRedirect("home");
-}
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String action = request.getParameter("action");
+        HttpSession session = request.getSession();
 
-@Override
-protected void doPost(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {
-    String action = request.getParameter("action");
-    HttpSession session = request.getSession();
-
-    if (action != null && action.equals("add")) {
-        String productIdStr = request.getParameter("productId");
-        try {
-            int productId = Integer.parseInt(productIdStr);
-            List<Integer> cart = (List<Integer>) session.getAttribute("cart");
-            if (cart == null) {
-                cart = new ArrayList<>();
-            }
-            cart.add(productId);
-            session.setAttribute("cart", cart);
-        } catch (NumberFormatException e) {
-            Logger.getLogger(CartServlet.class.getName()).log(Level.SEVERE, null, e);
+        if ("view".equals(action)) {
+            viewCart(request, response, session);
+        } else {
+            response.sendRedirect(request.getContextPath() + "/home");
         }
     }
 
-    String referer = request.getHeader("referer");
-    response.sendRedirect(referer);
-}
+    private void viewCart(HttpServletRequest request, HttpServletResponse response, HttpSession session)
+            throws ServletException, IOException {
+        List<String> cart = (List<String>) session.getAttribute("cart");
+
+        if (cart == null || cart.isEmpty()) {
+            request.setAttribute("message", "Your cart is empty.");
+            request.getRequestDispatcher("/WEB-INF/cart.jsp").forward(request, response);
+            return;
+        }
+
+        List<Product> cartProducts = new ArrayList<>();
+        for (String productId : cart) {
+            try {
+                Product product = StripeAccess.get(productId);
+                cartProducts.add(product);
+            } catch (Exception e) {
+                e.printStackTrace(); // Logging the exception
+            }
+        }
+
+        request.setAttribute("cartProducts", cartProducts);
+        request.getRequestDispatcher("/WEB-INF/cart.jsp").forward(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String action = request.getParameter("action");
+        HttpSession session = request.getSession();
+        List<String> cart = (List<String>) session.getAttribute("cart");
+
+        if (cart == null) {
+            cart = new ArrayList<>();
+            session.setAttribute("cart", cart);
+        }
+
+        if ("add".equals(action)) {
+            String productId = request.getParameter("productId");
+            cart.add(productId);
+        }
+
+        String referer = request.getHeader("Referer");
+        response.sendRedirect(referer != null ? referer : request.getContextPath() + "/home");
+    }
 }
