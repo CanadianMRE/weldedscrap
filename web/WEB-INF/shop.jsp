@@ -29,7 +29,7 @@
                             <div class="card-body">
                                 <h5 class="card-title text-center">${product.getName()}</h5>
                                 <a href="item?productId=${product.getId()}" class="btn btn-primary">Details</a>
-                                <form method="post" action="CartServlet?action=add" class="mt-1">
+                                <form method="post" action="cart?action=add" class="mt-1">
                                     <input type="hidden" name="productId" value="${product.getId()}">
                                     <button type="submit" class="btn btn-success">Add to Cart</button>
                                 </form>

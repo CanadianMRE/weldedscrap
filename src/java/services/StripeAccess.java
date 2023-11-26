@@ -13,28 +13,24 @@ import com.stripe.model.Product;
 import com.stripe.model.ProductCollection;
 import com.stripe.model.checkout.Session;
 import com.stripe.param.ProductListParams;
-import com.stripe.param.SubscriptionItemCreateParams;
 import com.stripe.param.checkout.SessionCreateParams;
 import com.stripe.param.checkout.SessionCreateParams.*;
 import java.io.IOException;
-import java.lang.instrument.Instrumentation;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import models.Users;
 
 /**
  *
  * @author WeldedScrap
  */
 public class StripeAccess {
-    public static final String MY_DOMAIN = "http://localhost:8084";
+    public static final String MY_DOMAIN = "http://localhost:8084/WeldedScrap";
     private static final String API_KEY = "sk_test_51M7jaMGxD4OrUtXmLf5fbGchQAoWF4ZoOVAorFLwNfDWeE5Q2LM9otIUJDlxO0GT1D7WjqkOhr0jufI4UE0LyM8200YAK8xqWa";
    
     
@@ -81,10 +77,10 @@ public class StripeAccess {
         Builder sessionBuild =
                 SessionCreateParams.builder()
                 .setMode(SessionCreateParams.Mode.PAYMENT)
-//                .setSuccessUrl(MY_DOMAIN + "/genericMessage?bigMessage=Success")
-//                .setCancelUrl(MY_DOMAIN + "/genericMessage?bigMessage=Failed&message=Purchase Failed")
-                .setSuccessUrl(MY_DOMAIN + "/home")
-                .setCancelUrl(MY_DOMAIN + "/home")
+                .setSuccessUrl(MY_DOMAIN + "/message?bigMessage=Success")
+                .setCancelUrl(MY_DOMAIN + "/message?bigMessage=Failed&message=Purchase Failed")
+//                .setSuccessUrl(MY_DOMAIN + "/home")
+//                .setCancelUrl(MY_DOMAIN + "/home")
                .setAutomaticTax(
                         SessionCreateParams.AutomaticTax.builder()
                         .setEnabled(true)
@@ -114,6 +110,8 @@ public class StripeAccess {
         }
         
         SessionCreateParams params = sessionBuild.build();
+        
+        session.setAttribute("cart", new ArrayList<String>());
         
         Session stripeSession = Session.create(params);
         
