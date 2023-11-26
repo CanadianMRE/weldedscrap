@@ -24,6 +24,7 @@ import java.util.function.Consumer;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import models.Users;
 
 /**
  *
@@ -74,18 +75,28 @@ public class StripeAccess {
         
         Stripe.apiKey = API_KEY;
         
-        Builder sessionBuild =
-                SessionCreateParams.builder()
+        Builder sessionBuild = SessionCreateParams.builder()
                 .setMode(SessionCreateParams.Mode.PAYMENT)
                 .setSuccessUrl(MY_DOMAIN + "/success")
                 .setCancelUrl(MY_DOMAIN + "/failed")
 //                .setSuccessUrl(MY_DOMAIN + "/home")
 //                .setCancelUrl(MY_DOMAIN + "/home")
-               .setAutomaticTax(
+                .setBillingAddressCollection(BillingAddressCollection.REQUIRED)
+                .setInvoiceCreation(
+                        SessionCreateParams.InvoiceCreation.builder().setEnabled(true).build()
+                )
+                .setAutomaticTax(
                         SessionCreateParams.AutomaticTax.builder()
-                        .setEnabled(true)
-                        .build()
+                                .setEnabled(true)
+                                .build()
                 );
+        
+        
+        Users user = (Users) session.getAttribute("User");
+        
+        if (user != null) {
+            sessionBuild.setCustomerEmail(user.getEmail());
+        }
         
         Map<String, Long> itemInfo = new HashMap<>();
         

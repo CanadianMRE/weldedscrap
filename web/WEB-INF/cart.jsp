@@ -47,8 +47,7 @@
         <form action="checkout">
             <input type="submit" value="Checkout">
         </form>
-        <button class="checkout-button">Checkout</button>
-            <a href="home" class="back-to-shop">Back to Shop</a>
+        <a href="home" class="back-to-shop">Back to Shop</a>
         </div>
         <footer>
             <p>2023 WeldedScrap.com</p>
