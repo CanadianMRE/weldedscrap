@@ -8,6 +8,7 @@ package services;
 
 
 import com.stripe.Stripe;
+import com.stripe.exception.StripeException;
 import com.stripe.model.Product;
 import com.stripe.model.ProductCollection;
 import com.stripe.model.checkout.Session;
@@ -15,11 +16,16 @@ import com.stripe.param.ProductListParams;
 import com.stripe.param.SubscriptionItemCreateParams;
 import com.stripe.param.checkout.SessionCreateParams;
 import com.stripe.param.checkout.SessionCreateParams.*;
+import java.io.IOException;
 import java.lang.instrument.Instrumentation;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.function.Consumer;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import models.Users;
 
 /**
  *
@@ -58,20 +64,41 @@ public class StripeAccess {
         return productList;
     }
     
-    public static void CreateSession() {
+    public static void PurchaseItems(HttpServletRequest request, HttpServletResponse response) throws IOException, StripeException {
+        HttpSession session = request.getSession();
+        
+        List<String> cart = (List<String>) session.getAttribute("cart");
+        
+        if (cart == null) {
+            response.sendRedirect("home");
+            return;
+        }
+        
         Stripe.apiKey = API_KEY;
         
         Builder sessionBuild =
                 SessionCreateParams.builder()
                 .setMode(SessionCreateParams.Mode.PAYMENT)
-                .setSuccessUrl(MY_DOMAIN + "/successPayment")
-                .setCancelUrl(MY_DOMAIN + "/cancelPayment")
+                .setSuccessUrl(MY_DOMAIN + "/genericMessage?bigMessage=Success")
+                .setCancelUrl(MY_DOMAIN + "/genericMessage?bigMessage=Failed&message=Purchase Failed")
                 .setAutomaticTax(
                         SessionCreateParams.AutomaticTax.builder()
                         .setEnabled(true)
                         .build()
                 );
         
+        for (String item : cart) {
+            LineItem lineItem = SessionCreateParams.LineItem.builder()
+                    .setPrice(item)
+                    .build();
+            
+            sessionBuild.addLineItem(lineItem);
+        }
+        
         SessionCreateParams params = sessionBuild.build();
+        
+        Session stripeSession = Session.create(params);
+        
+        response.sendRedirect(stripeSession.getUrl());
     }
 }

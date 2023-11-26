@@ -44,14 +44,10 @@
                                     <td>${user.lastName}</td>
                                     <td>${user.roleId.name}</td>
                                     <td>
-                                        <form method="post" action="editUser">
+                                        <form method="post" action="admin">
                                             <input type="hidden" name="userId" value="${user.userId}">
                                             <input type="hidden" name="action" value="edit">
                                             <button type="submit" name="submit" class="btn btn-primary">Edit</button>
-                                        </form>
-                                        <form method="post" action="deleteUser">
-                                            <input type="hidden" name="userId" value="${user.userId}">
-                                            <input type="hidden" name="action" value="delete">
                                             <button type="submit" name="submit" class="btn btn-danger">Delete</button>
                                         </form>
                                     </td>
