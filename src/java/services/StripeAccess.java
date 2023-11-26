@@ -77,8 +77,8 @@ public class StripeAccess {
         Builder sessionBuild =
                 SessionCreateParams.builder()
                 .setMode(SessionCreateParams.Mode.PAYMENT)
-                .setSuccessUrl(MY_DOMAIN + "/message?bigMessage=Success")
-                .setCancelUrl(MY_DOMAIN + "/message?bigMessage=Failed&message=Purchase Failed")
+                .setSuccessUrl(MY_DOMAIN + "/success")
+                .setCancelUrl(MY_DOMAIN + "/failed")
 //                .setSuccessUrl(MY_DOMAIN + "/home")
 //                .setCancelUrl(MY_DOMAIN + "/home")
                .setAutomaticTax(

@@ -33,8 +33,12 @@
         <servlet-class>servlets.CartServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>MessageServlet</servlet-name>
-        <servlet-class>servlets.MessageServlet</servlet-class>
+        <servlet-name>PurchaseSuccess</servlet-name>
+        <servlet-class>servlets.PurchaseSuccess</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PurchaseFailed</servlet-name>
+        <servlet-class>servlets.PurchaseFailed</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -69,8 +73,12 @@
         <url-pattern>/cart</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>MessageServlet</servlet-name>
-        <url-pattern>/message</url-pattern>
+        <servlet-name>PurchaseSuccess</servlet-name>
+        <url-pattern>/success</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PurchaseFailed</servlet-name>
+        <url-pattern>/failed</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

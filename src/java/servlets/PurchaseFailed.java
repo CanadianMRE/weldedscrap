@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author WeldedScrap
  */
-public class MessageServlet extends HttpServlet {
+public class PurchaseFailed extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -29,7 +29,7 @@ public class MessageServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/WEB-INF/genericMessage.jsp");
+        getServletContext().getRequestDispatcher("/WEB-INF/failed.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
