@@ -8,3 +8,92 @@ and open the template in the editor.
     Author     : Marley
 */
 
+/* Reset default margin and padding */
+body, h1, form, header {
+    margin: 0;
+    padding: 0;
+}
+
+/* Set a background color and text color */
+body {
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center horizontally and vertically */
+    align-items: center;
+    padding-top: 70px; /* Adjusted padding to make it look centered */
+}
+
+h1 {
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+
+/* Style the header */
+header {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 0;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+}
+
+/* Style the header columns */
+#header_left {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 30px;
+}
+
+#header_center {
+    text-align: right;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#header_right {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    /* Align to the right side */
+    padding-right: 30px;
+}
+
+header a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+#logo {
+    max-width: 100px;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Style the user profile section */
+body > h1,
+body > div {
+    margin-top: 20px;
+}
+
+/* Style the links */
+body > a {
+    display: block;
+    margin-top: 20px;
+    text-align: center;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+body > a:hover {
+    color: #0056b3;

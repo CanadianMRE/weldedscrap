@@ -28,6 +28,7 @@ li.col-4 {
     flex: 0 0 33.33%; /* Adjust width to create three items per row */
     box-sizing: border-box;
     padding: 15px;
+    margin-bottom: 20px;
 }
 
 .card {
@@ -59,4 +60,16 @@ li.col-4 {
 
 .btn-success {
     width: 100%;
+}
+
+@media (max-width: 760px) {
+    li.col-4 {
+        flex: 0 0 100%;
+    }
+}
+
+@media (min-width: 760px) and (max-width: 1200px) {
+    li.col-4 {
+        flex: 0 0 48%; /* Adjusted width for two items per row on tablets */
+    }
 }
