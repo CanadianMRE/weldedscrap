@@ -5,6 +5,7 @@
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="services.StripeAccess"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -31,7 +32,7 @@
                         <div class="item-info">
                             <h3>${product.getName()}</h3>
                             <p>${product.getDescription()}</p>
-                            <p>Price: $${product.getDefaultPriceObject().getUnitAmount()}</p>
+                            <p>Price: $${StripeAccess.getPrice(product)}</p>
                             <form action="cart?action=remove" method="post">
                                 <input type="hidden" name="productId" value="${product.getId()}">
                                 <button type="submit" class="btn-remove">Remove</button>

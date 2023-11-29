@@ -5,6 +5,7 @@
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="services.StripeAccess"%>
 <!DOCTYPE html>
 <head>
 
@@ -33,7 +34,7 @@
             <p>
                 Product Name: ${product.getName()}<br>
                 Description: ${product.getDescription()}<br>
-                Price: ${product.getDefaultPriceObject().getUnitAmount()}<br>
+                Price: $${StripeAccess.getPrice(product)}<br>
                 Stock: 
             </p>
             <form method="post" action="cart?action=add">

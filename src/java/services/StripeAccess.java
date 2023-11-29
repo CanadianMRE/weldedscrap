@@ -9,6 +9,7 @@ package services;
 
 import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
+import com.stripe.model.Price;
 import com.stripe.model.Product;
 import com.stripe.model.ProductCollection;
 import com.stripe.model.checkout.Session;
@@ -34,6 +35,9 @@ public class StripeAccess {
     public static final String MY_DOMAIN = "http://localhost:8084/WeldedScrap";
     private static final String API_KEY = "sk_test_51M7jaMGxD4OrUtXmLf5fbGchQAoWF4ZoOVAorFLwNfDWeE5Q2LM9otIUJDlxO0GT1D7WjqkOhr0jufI4UE0LyM8200YAK8xqWa";
    
+    public static String getPrice(Product product) throws StripeException {
+        return String.format("%.2f", (double) Price.retrieve(product.getDefaultPrice()).getUnitAmount()/100);
+    }
     
     public static Product get(String id) throws Exception {
         Stripe.apiKey = API_KEY;
