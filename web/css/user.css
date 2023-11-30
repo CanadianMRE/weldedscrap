@@ -14,6 +14,20 @@ body, h1, form, header {
     padding: 0;
 }
 
+#topRow {
+    margin-top: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#form {
+    width: 700px;
+    text-align: left;
+    margin-bottom: 40px;
+}
+
 /* Set a background color and text color */
 body {
     background-color: #f0f0f0;
@@ -29,6 +43,10 @@ h1 {
     text-align: center;
     display: flex;
     align-items: center;
+}
+
+#titleRow{
+    color:#fff;
 }
 
 /* Style the header */
@@ -97,4 +115,8 @@ body > a {
 
 body > a:hover {
     color: #0056b3;
+}
+.container-fluid {
+    background-image: url("../images/welding1.jpg");
+    background-size: cover;
 }

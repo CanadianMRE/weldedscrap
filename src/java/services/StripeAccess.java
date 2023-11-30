@@ -9,6 +9,7 @@ package services;
 
 import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
+import com.stripe.model.Price;
 import com.stripe.model.Product;
 import com.stripe.model.ProductCollection;
 import com.stripe.model.checkout.Session;
@@ -24,6 +25,7 @@ import java.util.function.Consumer;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import models.Users;
 
 /**
  *
@@ -33,6 +35,9 @@ public class StripeAccess {
     public static final String MY_DOMAIN = "http://localhost:8084/WeldedScrap";
     private static final String API_KEY = "sk_test_51M7jaMGxD4OrUtXmLf5fbGchQAoWF4ZoOVAorFLwNfDWeE5Q2LM9otIUJDlxO0GT1D7WjqkOhr0jufI4UE0LyM8200YAK8xqWa";
    
+    public static String getPrice(Product product) throws StripeException {
+        return String.format("%.2f", (double) Price.retrieve(product.getDefaultPrice()).getUnitAmount()/100);
+    }
     
     public static Product get(String id) throws Exception {
         Stripe.apiKey = API_KEY;
@@ -74,18 +79,28 @@ public class StripeAccess {
         
         Stripe.apiKey = API_KEY;
         
-        Builder sessionBuild =
-                SessionCreateParams.builder()
+        Builder sessionBuild = SessionCreateParams.builder()
                 .setMode(SessionCreateParams.Mode.PAYMENT)
                 .setSuccessUrl(MY_DOMAIN + "/success")
                 .setCancelUrl(MY_DOMAIN + "/failed")
 //                .setSuccessUrl(MY_DOMAIN + "/home")
 //                .setCancelUrl(MY_DOMAIN + "/home")
-               .setAutomaticTax(
+                .setBillingAddressCollection(BillingAddressCollection.REQUIRED)
+                .setInvoiceCreation(
+                        SessionCreateParams.InvoiceCreation.builder().setEnabled(true).build()
+                )
+                .setAutomaticTax(
                         SessionCreateParams.AutomaticTax.builder()
-                        .setEnabled(true)
-                        .build()
+                                .setEnabled(true)
+                                .build()
                 );
+        
+        
+        Users user = (Users) session.getAttribute("User");
+        
+        if (user != null) {
+            sessionBuild.setCustomerEmail(user.getEmail());
+        }
         
         Map<String, Long> itemInfo = new HashMap<>();
         

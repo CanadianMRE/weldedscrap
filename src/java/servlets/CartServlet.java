@@ -5,6 +5,7 @@
  */
 package servlets;
 
+import com.stripe.model.Price;
 import com.stripe.model.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -48,17 +49,21 @@ public class CartServlet extends HttpServlet {
             request.getRequestDispatcher("/WEB-INF/cart.jsp").forward(request, response);
             return;
         }
-
+        
+        Double totalCost = 0.0;
+        
         List<Product> cartProducts = new ArrayList<>();
         for (String productId : cart) {
             try {
                 Product product = StripeAccess.get(productId);
                 cartProducts.add(product);
+                totalCost += Price.retrieve(product.getDefaultPrice()).getUnitAmount();
             } catch (Exception e) {
                 e.printStackTrace(); // Logging the exception
             }
         }
 
+        request.setAttribute("total", String.format("%.2f", (double) totalCost/100));
         request.setAttribute("cartProducts", cartProducts);
         request.getRequestDispatcher("/WEB-INF/cart.jsp").forward(request, response);
     }

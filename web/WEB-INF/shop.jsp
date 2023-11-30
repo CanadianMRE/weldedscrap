@@ -15,7 +15,24 @@
     <body>
         <%@include file="./../jspf/Header.jspf" %>
         <div class="container">
+            <div class="row">
+                <div class="col" id="hero">
+                    Welded Scrap
+                    <br>
+                    recycled creations
+                </div>
+            </div>
+            <hr class="rounded">
             <h1>Products</h1>
+            <div class="row">
+                <div class="col" id='heroMessage'>
+                    They say one persons trash is another's treasure. At Welded
+                    Scrap, we embraced it as our motto. Our unique works of art 
+                    are all made from recycled local materials, that other wise 
+                    would be discarded and forgotten. Stop procrastinating and 
+                    grab some welded scrap today!
+                </div>
+            </div>
             <ul class="row list-unstyled">
                 <c:forEach items="${products}" var="product" varStatus="loop">
                     <li class="col-4 d-flex flex-column align-items-center">
