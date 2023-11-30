@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import models.Users;
 import services.UserService;
+import services.VerificationService;
 
 /**
  *
@@ -32,51 +33,79 @@ public class AdminServlet extends HttpServlet {
     }
     
     private void editUser(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String rawUID = request.getParameter("userId");
-        String rawEmail = request.getParameter("userEmail");
-        String rawFName = request.getParameter("userFName");
-        String rawLName = request.getParameter("userLName");
-        String rawPassword = request.getParameter("userPassword");
-        String rawAddress = request.getParameter("userAddy");
+        String actualPassword = request.getParameter("password");
+        String newPassword = request.getParameter("newPassword");
+        String newEmail = request.getParameter("email");
+        String newFName = request.getParameter("fName");
+        String newLName = request.getParameter("lName");
+        String newAddress = request.getParameter("address");
         
-        if (rawEmail == null) {
+        String rawId = request.getParameter("userId");
+        
+        HttpSession session = request.getSession();
+        Users adminUser = (Users) session.getAttribute("user");
+        
+        if (rawId == null) {
             getBasePage(request, response);
             return;
         }
         
-        if (rawFName == null) {
-            getBasePage(request, response);
+        Integer removeId = Integer.valueOf(rawId);
+        
+        Users removeUser = UserService.get(removeId);
+        
+        if (!adminUser.getPassword().equals(actualPassword)) {
+            request.setAttribute("response", "Wrong password");
+            request.setAttribute("user", removeUser);
+            getServletContext().getRequestDispatcher("/WEB-INF/editUser.jsp").forward(request, response);
             return;
         }
         
-        if (rawLName == null) {
-            getBasePage(request, response);
+        if (!VerificationService.verifyEmail(newEmail)) {
+            request.setAttribute("response", "Invalid email");
+            request.setAttribute("user", removeUser);
+            getServletContext().getRequestDispatcher("/WEB-INF/editUser.jsp").forward(request, response);
             return;
         }
         
-        if (rawPassword == null) {
-            getBasePage(request, response);
+        if (!VerificationService.verifyName(newFName)) {
+            request.setAttribute("response", "First name is too short or too long");
+            request.setAttribute("user", removeUser);
+            getServletContext().getRequestDispatcher("/WEB-INF/editUser.jsp").forward(request, response);
             return;
         }
         
-        if (rawAddress == null) {
-            getBasePage(request, response);
+        if (!VerificationService.verifyName(newLName)) {
+            request.setAttribute("response", "Last name is too short or too long");
+            request.setAttribute("user", removeUser);
+            getServletContext().getRequestDispatcher("/WEB-INF/editUser.jsp").forward(request, response);
             return;
         }
         
-        int userId = Integer.parseInt(rawUID);
+        if (!VerificationService.verifyName(newAddress)) {
+            request.setAttribute("response", "");
+            request.setAttribute("user", removeUser);
+            getServletContext().getRequestDispatcher("/WEB-INF/editUser.jsp").forward(request, response);
+            return;
+        }
         
-        Users oldUser = UserService.get(userId);
+        if (!newPassword.equals("")) {
+            if (!VerificationService.verifyPassword(newPassword)) {
+                request.setAttribute("response", "Password must be atleast 5 characters long");
+                request.setAttribute("user", removeUser);
+                getServletContext().getRequestDispatcher("/WEB-INF/editUser.jsp").forward(request, response);
+                return;
+            } else {
+                removeUser.setPassword(newPassword);
+            }
+        }
         
-        oldUser.setFirstName(rawFName);
-        oldUser.setLastName(rawLName);
-        oldUser.setEmail(rawEmail);
-        oldUser.setAddress(rawAddress);
-        oldUser.setPassword(rawPassword);
+        removeUser.setEmail(newEmail);
+        removeUser.setFirstName(newFName);
+        removeUser.setLastName(newLName);
+        removeUser.setAddress(newAddress);
         
-        
-        UserService.update(oldUser);
-        
+        UserService.update(removeUser);
         getBasePage(request, response);
     }
     
@@ -130,13 +159,13 @@ public class AdminServlet extends HttpServlet {
         }
         
         switch(action) {
-            case "deleteUser":
+            case "Delete":
                 deleteUser(request, response);
                 break;
             case "editUser":
                 editUser(request, response);
                 break;
-            case "showEditUser":
+            case "Edit":
                 showEditUser(request, response);
                 break;
             default:

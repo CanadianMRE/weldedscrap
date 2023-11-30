@@ -32,25 +32,19 @@
                                 <th scope="col">First Name</th>
                                 <th scope="col">Last Name</th>
                                 <th scope="col">Role</th>
-                                <th scope="col">Actions</th>
                             </tr>
                         </thead>
                         <form method="post" action="admin">
+                            <input type="submit" name="action" value="Edit" class="btn btn-primary">
+                            <input type="submit" name="action" value="Delete"  class="btn btn-danger">
                             <c:forEach items="${users}" var="user">
                                 <tbody>
                                     <tr>
-                                        <td><input type="radio" name="radio"></td>
+                                        <td><input type="radio" name="userId" value="${user.userId}"></td>
                                         <td>${user.email}</td>
                                         <td>${user.firstName}</td>
                                         <td>${user.lastName}</td>
                                         <td>${user.roleId.name}</td>
-                                        <td>
-
-                                            <input type="hidden" name="userId" value="${user.userId}">
-                                            <input type="hidden" name="action" value="edit">
-                                            <button type="submit" name="submit" class="btn btn-primary">Edit</button>
-                                            <button type="submit" name="submit" class="btn btn-danger">Delete</button>
-                                        </td>
                                     </tr>
                                 </tbody>
                             </c:forEach>
