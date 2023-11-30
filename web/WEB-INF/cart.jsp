@@ -6,6 +6,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="services.StripeAccess"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="services.StripeAccess"%>
 <!DOCTYPE html>
 <html>
     <head>

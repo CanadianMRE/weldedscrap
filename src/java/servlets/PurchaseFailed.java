@@ -30,7 +30,8 @@ public class PurchaseFailed extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/WEB-INF/failed.jsp");
+        getServletContext().getRequestDispatcher("/WEB-INF/failed.jsp")
+                .forward(request, response);
     }
 
     /**
@@ -44,7 +45,8 @@ public class PurchaseFailed extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/WEB-INF/failed.jsp");
+        getServletContext().getRequestDispatcher("/WEB-INF/failed.jsp")
+                .forward(request, response);
     }
 
 }
