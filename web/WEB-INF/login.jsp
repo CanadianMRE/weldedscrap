@@ -1,8 +1,3 @@
-<%-- 
-    Document   : login
-    Created on : 30-Sep-2023, 11:09:23 AM
-    Author     : Jaymen
---%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -17,7 +12,9 @@
     </head>
     <body>
         <%@include file="./../jspf/Header.jspf" %>
-        <h1 id="loginT">Login</h1>
+        <div class="row" id='titleRow'>
+            <h1 id="loginT">Login</h1>
+        </div>
         <br>
         <h4>${message}</h4>
         <br>

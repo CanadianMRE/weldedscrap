@@ -24,42 +24,43 @@
             <h2>Users</h2>
             <div class="row">
                 <div class="col">
-                    <c:forEach items="${users}" var="user">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col"></th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">First Name</th>
-                                    <th scope="col">Last Name</th>
-                                    <th scope="col">Role</th>
-                                    <th scope="col">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><input type="radio"></td>
-                                    <td>${user.email}</td>
-                                    <td>${user.firstName}</td>
-                                    <td>${user.lastName}</td>
-                                    <td>${user.roleId.name}</td>
-                                    <td>
-                                        <form method="post" action="admin">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col"></th>
+                                <th scope="col">Email</th>
+                                <th scope="col">First Name</th>
+                                <th scope="col">Last Name</th>
+                                <th scope="col">Role</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <form method="post" action="admin">
+                            <c:forEach items="${users}" var="user">
+                                <tbody>
+                                    <tr>
+                                        <td><input type="radio" name="radio"></td>
+                                        <td>${user.email}</td>
+                                        <td>${user.firstName}</td>
+                                        <td>${user.lastName}</td>
+                                        <td>${user.roleId.name}</td>
+                                        <td>
+
                                             <input type="hidden" name="userId" value="${user.userId}">
                                             <input type="hidden" name="action" value="edit">
                                             <button type="submit" name="submit" class="btn btn-primary">Edit</button>
                                             <button type="submit" name="submit" class="btn btn-danger">Delete</button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </c:forEach>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </c:forEach>
+                        </form>
+                    </table>
                 </div>
             </div>
-            
+
             <a href="https://dashboard.stripe.com/products">View Products</a>
-            
+
             <p>
                 <a href="login">Logout</a>
             </p>

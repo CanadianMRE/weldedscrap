@@ -18,27 +18,42 @@
     </head>   
     <%@include file="./../jspf/Header.jspf" %>    
     <body>
-        <h1>Your Profile</h1>
-        
-        <form action="profile">
-            <label for="fName">First Name: </label>
-            <input type="text" id="fName" name="fName" value="${user.getFirstName()}"><br><br>
-            <label for="lName">Last Name: </label>
-            <input type="text" id="lName" name="lName" value="${user.getLastName()}"><br><br>
-            <label for="email">Email: </label>
-            <input type="text" id="email" name="email" value="${user.getEmail()}"><br><br>
-            <label for="address">Address: </label>
-            <input type="text" id="address" name="address" value="${user.getAddress()}"><br><br>
-            <label for="newPassword">New Password: </label>
-            <input type="password" id="pnum" name="newPassword"><br><br>
-            <input type="hidden" name="action" value="submitProfileEdits">
-            
-            <label for="password">Password: </label>
-            <input type="password" id="password" name="password"><br><br>
-            <br>
-            ${response}
-            <br>
-            <input type="submit" value="Submit">
-        </form>
+        <div class="container-fluid">
+            <div class="row" >
+                <div class="col" id='topRow'>
+                    <div class="row" id="titleRow">
+                        <h1>Your Profile</h1>
+                    </div>
+                    
+
+                    <form action="profile" id='form'>
+                        <div class="row">
+                            <div class='col'>
+                                <label for="fName">First Name: </label>
+                                <input type="text" id="fName" name="fName" value="${user.getFirstName()}">
+                            </div>
+                            <div class='col'>
+                                <label for="lName">Last Name: </label>
+                                <input type="text" id="lName" name="lName" value="${user.getLastName()}"><br>
+                            </div>
+                        </div>
+                        <label for="email">Email: </label>
+                        <input type="text" id="email" name="email" value="${user.getEmail()}"><br>
+                        <label for="address">Address: </label>
+                        <input type="text" id="address" name="address" value="${user.getAddress()}"><br>
+                        <label for="newPassword">New Password: </label>
+                        <input type="password" id="pnum" name="newPassword"><br>
+                        <input type="hidden" name="action" value="submitProfileEdits">
+
+                        <label for="password">Password: </label>
+                        <input type="password" id="password" name="password">
+                        <br>
+                        ${response}
+                        <br>
+                        <input type="submit" value="Submit">
+                    </form>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
