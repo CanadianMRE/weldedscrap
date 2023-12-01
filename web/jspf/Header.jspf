@@ -1,4 +1,3 @@
-<%-- any content can be specified here e.g.: --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page pageEncoding="UTF-8" %>
 <header class="mainHeader">
@@ -16,14 +15,19 @@
             </c:if>
             <c:if test = "${user != null}">
                 <c:if test = "${user.roleId.getRoleId() == 1}">
-                <a href="admin">Admin</a>
+                    <a href="admin">Admin</a>
                 </c:if>
                 <a href="profile">Hello ${user.firstName}</a>
                 <a href="login">Logout</a>
             </c:if>
             <a href="cart?action=view" class="btn btn-warning">
-                <i class="fas fa-shopping-cart"></i> View Cart
+                <i class="fas fa-shopping-cart"></i>
+                <c:if test="${not empty sessionScope.cartCount and sessionScope.cartCount > 0}">
+                    <span class="cart-count">${sessionScope.cartCount}</span>
+                </c:if>
+                View Cart
             </a>
+
         </div>
     </div>
 </header>

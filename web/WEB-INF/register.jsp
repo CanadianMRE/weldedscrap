@@ -15,7 +15,8 @@
                     <div class="row" id="titleRow">
                         <h1 id="titleID">Register as a New User</h1>
                     </div>
-                    ${message}
+                    
+                    
                     <form action="register" method="post" id="form">
                         <label>Email:</label>
                         <input type="text" name="email" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" required><br>
@@ -27,6 +28,7 @@
                         <input type="password" name="password" reqiured><br><br>
                         <input type="submit" value="Register">
                         <br>
+                        <div id="message">${message}</div>
                         <br>
                         <a href="login">Already a User?</a>
                     </form>

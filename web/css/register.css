@@ -138,6 +138,11 @@ a:hover {
     color: white;
 }
 
+#message {
+    color: white;
+    background-color: red;
+}
+
 @media (max-width: 760px) {
     li.col-4 {
         flex: 0 0 100%;

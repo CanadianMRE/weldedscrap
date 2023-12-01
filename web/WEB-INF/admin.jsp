@@ -55,7 +55,7 @@
                             </c:forEach>
                         </form>
                     </table>
-                    <a href="https://dashboard.stripe.com/products">View Products</a>
+                    <a href="https://dashboard.stripe.com/products">View/Edit Products</a>
                     <p>
                         <a href="login">Logout</a>
                     </p>

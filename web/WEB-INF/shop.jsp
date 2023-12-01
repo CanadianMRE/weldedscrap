@@ -17,9 +17,10 @@
         <div class="container">
             <div class="row">
                 <div class="col" id="hero">
-                    Welded Scrap
-                    <br>
-                    recycled creations
+                    <h1 id="content">Welded Scrap</h1>
+                    <h2 id="content2">recycled creations</h2>
+                         
+                    </p>
                 </div>
             </div>
             <hr class="rounded">

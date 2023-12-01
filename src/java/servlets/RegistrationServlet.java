@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package servlets;
 
 import java.io.IOException;
@@ -13,13 +8,15 @@ import javax.servlet.http.HttpServletResponse;
 import services.RoleService;
 import services.UserService;
 import models.*;
+import services.VerificationService;
 
 /**
  *
- * @author gursh
- */
+ 
+@author gursh*/
 public class RegistrationServlet extends HttpServlet {
- @Override
+
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         getServletContext().getRequestDispatcher("/WEB-INF/register.jsp")
@@ -36,38 +33,37 @@ public class RegistrationServlet extends HttpServlet {
         UserService userService = new UserService();
         RoleService roleService = new RoleService();
 
+        String errorMessage = null;
         int errorCode = 0;
 
-        if (email == null || email.isEmpty()) {
+        if (!VerificationService.verifyEmail(email)) {
             errorCode = 1;
-        } else if (firstName == null || firstName.isEmpty()) {
+        } else if (!VerificationService.verifyName(firstName)) {
             errorCode = 2;
-        } else if (lastName == null || lastName.isEmpty()) {
+        } else if (!VerificationService.verifyName(lastName)) {
             errorCode = 3;
-        } else if (password == null || password.isEmpty()) {
+        } else if (!VerificationService.verifyPassword(password)) {
             errorCode = 4;
         }
 
-        if (errorCode > 0) {
-            String errorMessage;
+        switch (errorCode) {
+            case 1:
+                errorMessage = "Invalid email format.";
+                break;
+            case 2:
+                errorMessage = "Invalid first name.";
+                break;
+            case 3:
+                errorMessage = "Invalid last name.";
+                break;
+            case 4:
+                errorMessage = "Invalid password. Password must be at least 5 characters long.";
+                break;
+            default:
+                break;
+        }
 
-            switch (errorCode) {
-                case 1:
-                    errorMessage = "Please enter an email";
-                    break;
-                case 2:
-                    errorMessage = "Please enter a first name";
-                    break;
-                case 3:
-                    errorMessage = "Please enter a last name";
-                    break;
-                case 4:
-                    errorMessage = "Please enter a password";
-                    break;
-                default:
-                    errorMessage = "An error occurred";
-            }
-
+        if (errorMessage != null) {
             request.setAttribute("message", errorMessage);
             getServletContext().getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
             return;
@@ -81,14 +77,13 @@ public class RegistrationServlet extends HttpServlet {
             newUser.setPassword(password);
             newUser.setRoleId(roleService.get(2));
             userService.insert(newUser);
-            
-            
-            request.setAttribute("message", "New user has been registered");
-            getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+
+            request.setAttribute("message", "New user has been registered successfully.");
+            response.sendRedirect(request.getContextPath() + "/login");
         } catch (Exception ex) {
-             ex.printStackTrace();
-             String errorMessage = ex.getMessage();
-            request.setAttribute("message", errorMessage + "An error occurred during registration");
+            ex.printStackTrace();
+            errorMessage = "An error occurred during registration: " + ex.getMessage();
+            request.setAttribute("message", errorMessage);
             getServletContext().getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
         }
     }

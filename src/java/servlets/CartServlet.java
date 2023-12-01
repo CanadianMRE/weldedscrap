@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package servlets;
 
 import com.stripe.model.Price;
@@ -23,8 +18,8 @@ import services.StripeAccess;
 
 /**
  *
- * @author gursh
- */
+ 
+@author gursh*/
 public class CartServlet extends HttpServlet {
 
     @Override
@@ -49,9 +44,9 @@ public class CartServlet extends HttpServlet {
             request.getRequestDispatcher("/WEB-INF/cart.jsp").forward(request, response);
             return;
         }
-        
+
         Double totalCost = 0.0;
-        
+
         List<Product> cartProducts = new ArrayList<>();
         for (String productId : cart) {
             try {
@@ -59,11 +54,11 @@ public class CartServlet extends HttpServlet {
                 cartProducts.add(product);
                 totalCost += Price.retrieve(product.getDefaultPrice()).getUnitAmount();
             } catch (Exception e) {
-                e.printStackTrace(); // Logging the exception
+                e.printStackTrace();
             }
         }
 
-        request.setAttribute("total", String.format("%.2f", (double) totalCost/100));
+        request.setAttribute("total", String.format("%.2f", (double) totalCost / 100));
         request.setAttribute("cartProducts", cartProducts);
         request.getRequestDispatcher("/WEB-INF/cart.jsp").forward(request, response);
     }
@@ -80,26 +75,22 @@ public class CartServlet extends HttpServlet {
             session.setAttribute("cart", cart);
         }
 
-        System.out.println("Action: " + action); // Print the action to console
-
         if ("add".equals(action)) {
             String productId = request.getParameter("productId");
-            System.out.println("Adding Product ID: " + productId); // Print the product ID being added
             if (productId != null && !productId.isEmpty()) {
                 cart.add(productId);
+                session.setAttribute("cartCount", cart.size());
             }
         } else if ("remove".equals(action)) {
             String productId = request.getParameter("productId");
-            System.out.println("Removing Product ID: " + productId); // Print the product ID being removed
             if (productId != null && !productId.isEmpty()) {
-                cart.remove(productId); // Remove the product by ID
-                System.out.println("Product removed from cart."); // Confirm removal
-            } else {
-                System.out.println("Product ID is null or empty for removal.");
+                cart.remove(productId);
+                session.setAttribute("cartCount", cart.size());
             }
         }
 
         String referer = request.getHeader("Referer");
         response.sendRedirect(referer != null ? referer : request.getContextPath() + "/home");
     }
+
 }
