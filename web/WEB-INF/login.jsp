@@ -10,22 +10,26 @@
         <link rel="stylesheet" type="text/css" href="./css/login.css">
         <link rel="stylesheet" type="text/css" href="./css/Header.css">
     </head>
+    <%@include file="./../jspf/Header.jspf" %>
     <body>
-        <%@include file="./../jspf/Header.jspf" %>
-        <div class="row" id='titleRow'>
-            <h1 id="loginT">Login</h1>
+        <div class="container-fluid">
+            <div class="row" id='topTitle'>
+                <div class="col" id="topRow">
+                    <div class="row" id="titleRow">
+                        <h1 id="titleID">Login</h1>
+                    </div>
+                    ${message}
+                    <form action="login" method="post">
+                        Email:
+                        <input type="text" name="email" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" required><br>
+                        Password:
+                        <input type="password" name="password" required><br>
+                        <input type="submit" value="Sign in">
+                    </form>
+                    <br>
+                </div>
+                <a href="login">Already a User?</a>
+            </div>
         </div>
-        <br>
-        <h4>${message}</h4>
-        <br>
-        <form action="login" method="post">
-            <label>Email:</label>
-            <input type="text" name="email" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" required><br>
-            <label>Password:</label>
-            <input type="password" name="password" required><br>
-            <input type="submit" value="Sign in">
-        </form>
-        <a href="register">Register</a>
-
     </body>
 </html>
