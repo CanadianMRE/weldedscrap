@@ -17,14 +17,21 @@
                     </div>
                     ${message}
                     <form action="register" method="post" id="form">
-                        Email: <input type="text" name="email" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" required><br>
-                        First Name: <input type="text" name="firstName" pattern="\b([A-ZÀ-ÿ][-,a-z. ']+[ ]*)+" required><br>
-                        Last Name: <input type="text" name="lastName" pattern="\b([A-ZÀ-ÿ][-,a-z. ']+[ ]*)+" required><br>
-                        Password: <input type="password" name="password" reqiured><br>
+                        <label>Email:</label>
+                        <input type="text" name="email" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" required><br>
+                        <label>First Name:</label>
+                        <input type="text" name="firstName" pattern="\b([A-ZÀ-ÿ][-,a-z. ']+[ ]*)+" required><br>
+                        <label>Last Name:</label>
+                        <input type="text" name="lastName" pattern="\b([A-ZÀ-ÿ][-,a-z. ']+[ ]*)+" required><br>
+                        <label>Password:</label>
+                        <input type="password" name="password" reqiured><br><br>
                         <input type="submit" value="Register">
+                        <br>
+                        <br>
+                        <a href="login">Already a User?</a>
                     </form>
-                    <a href="login">Already a User?</a>
-                    <br>
+
+
                 </div>
             </div>
         </div>

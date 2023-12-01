@@ -54,8 +54,5 @@
             </div>
         </div>
     </div>
-    <footer>
-        <p>2023 WeldedScrap.com</p>
-    </footer>
 </body>
 </html>

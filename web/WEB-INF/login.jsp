@@ -20,15 +20,19 @@
                     </div>
                     ${message}
                     <form action="login" method="post">
-                        Email:
+                        <label>Email:</label>
                         <input type="text" name="email" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" required><br>
-                        Password:
-                        <input type="password" name="password" required><br>
+                        <label>Password:</label>
+                        <input type="password" name="password" required><br><br>
                         <input type="submit" value="Sign in">
+                        <br>
+                        <br>
+                        Don't have an account?<br>
+                            <a href="login">Register here</a>  
+
+
                     </form>
-                    <br>
                 </div>
-                <a href="login">Already a User?</a>
             </div>
         </div>
     </body>

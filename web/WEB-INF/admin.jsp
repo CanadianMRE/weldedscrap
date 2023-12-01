@@ -17,13 +17,14 @@
     </head>
     <body>
         <%@include file="./../jspf/Header.jspf" %>
-        <div class="container">
-            <div class="row" id="welcome">
-                <h1>Welcome ${user.firstName}</h1>
+        <div class="container-fluid">
+            <div class="row" >
+                <h1 id="welcome">Welcome ${user.firstName}</h1>
             </div>
-            <h2>Users</h2>
+
             <div class="row">
-                <div class="col">
+                <div class="col" id="tableCol">
+                    <h2>Users</h2>
                     <table class="table">
                         <thead>
                             <tr>
@@ -35,8 +36,12 @@
                             </tr>
                         </thead>
                         <form method="post" action="admin">
-                            <input type="submit" name="action" value="Edit" class="btn btn-primary">
-                            <input type="submit" name="action" value="Delete"  class="btn btn-danger">
+                            <div class="row">
+                                <div class="col" id="butt">
+                                    <input type="submit" name="action" value="Edit" class="btn btn-primary" width="50">
+                                    <input type="submit" name="action" value="Delete"  class="btn btn-danger" width="50">
+                                </div>
+                            </div>
                             <c:forEach items="${users}" var="user">
                                 <tbody>
                                     <tr>
@@ -50,14 +55,13 @@
                             </c:forEach>
                         </form>
                     </table>
+                    <a href="https://dashboard.stripe.com/products">View Products</a>
+                    <p>
+                        <a href="login">Logout</a>
+                    </p>
                 </div>
             </div>
 
-            <a href="https://dashboard.stripe.com/products">View Products</a>
-
-            <p>
-                <a href="login">Logout</a>
-            </p>
         </div>
     </body>
 </html>

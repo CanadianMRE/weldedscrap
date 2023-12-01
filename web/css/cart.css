@@ -8,9 +8,12 @@ body {
     align-items: center;
     min-height: 100vh;
     margin: 0;
+    background-image: url("../images/WeldedCart.jpg");
+    background-size: cover;
 }
 
-.container {
+.container-fluid {
+    margin-top: 120px;
     width: 80%; /* Adjust the width based on your design */
     max-width: 1200px; /* Optional: Set a maximum width for larger screens */
     min-height: 80vh; /* Minimum height to ensure content is visible */
@@ -29,7 +32,6 @@ h1 {
 .btn-remove {
     background-color: #dc3545;
     color: #fff;
-    border: none;
     padding: 5px 10px;
     cursor: pointer;
 }
@@ -42,12 +44,36 @@ h1 {
     text-align: right;
 }
 
-footer {
-    background-color: #007bff;
-    color: #fff;
-    text-align: center;
-    padding: 10px 0;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+
+#cartRow, #cartRow1 {
+    background-color:#ddd;
+    border-radius: 7px;
+    padding: 20px
 }
+
+#cartRow {
+    padding-top: 20px;
+}
+
+#Scart {
+    color: white;
+    margin-bottom: 40px;
+}
+
+#frm, #frm2{
+    background-color: transparent;
+}
+
+@media (max-width: 760px) {
+    li.col-4 {
+        flex: 0 0 100%;
+    }
+}
+
+@media (min-width: 760px) and (max-width: 1200px) {
+    li.col-4 {
+        flex: 0 0 48%; /* Adjusted width for two items per row on tablets */
+    }
+}
+
+

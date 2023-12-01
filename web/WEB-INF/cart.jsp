@@ -20,10 +20,10 @@
     </head>
     <body>
         <%@include file="./../jspf/Header.jspf" %>
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
-                <div class="col">
-                    <h1>Shopping Cart</h1>
+                <h1 id="Scart">Shopping Cart</h1>
+                <div class="col" id="cartRow">                 
                     <table class="table">
                         <thead>
                             <tr>
@@ -48,7 +48,7 @@
                                     <td>${product.getName()}</td>
                                     <td>${product.getDescription()}</td>
                                     <td>$${StripeAccess.getPrice(product)}</td>
-                                    <td><form action="cart?action=remove" method="post">
+                                    <td><form action="cart?action=remove" method="post" id="frm2">
                                             <input type="hidden" name="productId" value="${product.getId()}">
                                             <button type="submit" class="btn-remove">Remove</button>
                                         </form>
@@ -59,18 +59,15 @@
                     </table>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" id="cartRow1">
                 <div class="col" id="checkOut">
                     Total: $${total}
-                    <form action="checkout">
+                    <form action="checkout" id="frm">
                         <input type="submit" value="Checkout">
                     </form>
-                    <a href="login">Logout</a>
+                    <a href="home">Continue Shopping</a>
                 </div>
             </div>
         </div>
-        <footer>
-            <p>2023 WeldedScrap.com</p>
-        </footer>
     </body>
 </html>

@@ -60,6 +60,21 @@
                     </c:if>
                 </c:forEach>
             </ul>
+            <hr class="rounded">
+            <div class="row">
+                <div class="col">
+                    <h1>About Us</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    Welded Scrap is a local Albertan business that prides itself
+                    in delivering quality, unique pieces. We are a family driven
+                    and extremely passionate about our craft. Feel free to reach
+                    to us by email : <a href="mailto:frenchy8868@gmail.com">frenchy8868@gmail.com</a>
+                    or by phone : (403)797-3434
+                </div>
+            </div>
             <a href="login">Logout</a>
 
             <%
