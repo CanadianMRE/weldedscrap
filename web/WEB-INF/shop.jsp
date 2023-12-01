@@ -11,16 +11,19 @@
         <link href="./css/shop.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" type="text/css" href="./css/Header.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <script type="module" src="../css/maps.js"></script>
     </head>
     <body>
         <%@include file="./../jspf/Header.jspf" %>
         <div class="container">
             <div class="row">
                 <div class="col" id="hero">
-                    <h1 id="content">Welded Scrap</h1>
-                    <h2 id="content2">recycled creations</h2>
-                         
-                    </p>
+                    <div class="row" id='innerrow'>
+                        <div class="col-6" id="heroinner">
+                            <h1 id="content">Welded Scrap</h1>
+                            <h2 id="content2">recycled creations</h2>                           
+                        </div>
+                    </div>
                 </div>
             </div>
             <hr class="rounded">
@@ -68,15 +71,79 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col">
+                <div class="col" id="about">
                     Welded Scrap is a local Albertan business that prides itself
                     in delivering quality, unique pieces. We are a family driven
-                    and extremely passionate about our craft. Feel free to reach
-                    to us by email : <a href="mailto:frenchy8868@gmail.com">frenchy8868@gmail.com</a>
-                    or by phone : (403)797-3434
+                    and extremely passionate about our craft. Don't hesitate to
+                    reach out to us with any inquiries or to get a custom piece 
+                    made.<br>
+                    <table class="table" id="contact">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">By email</th>
+                                <th scope="col">By Phone</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><a href="mailto:tyler@weldedscrap.ca" name='email'>tyler@weldedscrap.ca</a></td>
+                                <td><a href="403-857-3423">(403)857-3423</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-            <a href="login">Logout</a>
+            <div class="row" id="hoursandmap">
+                <div class="col">
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Hours of Operation</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Monday</td>
+                                <td>9am - 5pm</td>
+                            </tr>
+                            <tr>
+                                <td>Tuesday</td>
+                                <td>9am - 5pm</td>
+                            </tr>
+                            <tr>
+                                <td>Wednesday</td>
+                                <td>9am - 5pm</td>
+                            </tr>
+                            <tr>
+                                <td>Thursday</td>
+                                <td>9am - 5pm</td>
+                            </tr>
+                            <tr>
+                                <td>Friday</td>
+                                <td>9am - 9pm</td>
+                            </tr>
+                            <tr>
+                                <td>Saturday</td>
+                                <td>9am - 9pm</td>
+                            </tr>
+                            <tr>
+                                <td>Sunday</td>
+                                <td>9am - 5pm</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col" id="map" >
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2966.423329727998!2d-114.03000183105716!3d51.30275749699409!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53715f68bc9e1e03%3A0x91fe193692e62f5!2sAirdrie%2C%20AB!5e0!3m2!1sen!2sca!4v1701454243503!5m2!1sen!2sca" width="600" height="325" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <a href="login">Logout</a>
+                </div>
+            </div>
+
 
             <%
                 List<Integer> cart = (List<Integer>) session.getAttribute("cart");

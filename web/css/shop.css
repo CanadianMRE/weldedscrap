@@ -19,18 +19,22 @@ body {
     margin-bottom: 20px; /* Adjust the margin based on your design */
     min-height: 70vh;
 }
-#content, #content2 {
+
+#innerrow {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#heroinner {
     font-size: 2em;
     text-align: center;
-  background: rgba(0, 0, 0, 0.5);
-  color: #f1f1f1;
-  width: auto;
-  padding: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    color: #f1f1f1;
+    width: auto;
+    padding: 20px;
 }
 
-#content2 {
-    font-size: 1em;
-}
 
 #heroMessage {
     text-align: center;
@@ -92,13 +96,16 @@ li.col-4 {
     width: 100%;
 }
 
-footer {
-    background-color: #007bff;
-    color: #fff;
+#contact {
+    margin-top: 20px;
+}
+
+#about {
     text-align: center;
-    padding: 10px 0;
-    bottom: 0;
-    width: 100%;
+}
+
+#hoursandmap {
+    margin-top: 20px;
 }
 
 

@@ -42,6 +42,10 @@ h1 {
 
 #checkOut {
     text-align: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -55,9 +59,10 @@ h1 {
     padding-top: 20px;
 }
 
+
 #Scart {
     color: white;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
 
 #frm, #frm2{
