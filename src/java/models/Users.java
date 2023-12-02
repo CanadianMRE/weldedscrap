@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
- *
+ * AUTO GENERATED USERS ACCESS CLASS
  * @author WeldedScrap
  */
 @Entity

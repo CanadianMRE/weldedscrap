@@ -20,7 +20,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
- *
+ * AUTO GENERATED ROLES ACCESS CLASS
  * @author WeldedScrap
  */
 @Entity

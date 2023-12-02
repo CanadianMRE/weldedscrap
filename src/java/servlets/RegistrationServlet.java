@@ -11,9 +11,9 @@ import models.*;
 import services.VerificationService;
 
 /**
- *
- 
-@author gursh*/
+ * Handles registration
+ * @author WeldedScrap
+ */
 public class RegistrationServlet extends HttpServlet {
 
     @Override

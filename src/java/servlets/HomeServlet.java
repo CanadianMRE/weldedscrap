@@ -18,7 +18,18 @@ import javax.servlet.http.HttpSession;
 import models.Users;
 import services.StripeAccess;
 
+/**
+ * This page handles getting the home page and sending all required information
+ * @author WeldedScrap
+ */
 public class HomeServlet extends HttpServlet {
+    /**
+     * Handles displaying the home page and sending all user and product information
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException 
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -43,6 +54,13 @@ public class HomeServlet extends HttpServlet {
         getServletContext().getRequestDispatcher("/WEB-INF/shop.jsp").forward(request, response);
     }
     
+    /**
+     * Relays to the doGet page
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException 
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

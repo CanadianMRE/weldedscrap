@@ -19,11 +19,18 @@ import services.UserService;
 import services.VerificationService;
 
 /**
- *
+ * This servlet handles the admin page and all actions on the page
+ * 
  * @author gursh
  */
 public class AdminServlet extends HttpServlet {
     
+    /**
+     * Gets the base admin page
+     * @param request
+     * @param response
+     * @throws Exception 
+     */
     private void getBasePage(HttpServletRequest request, HttpServletResponse response) throws Exception {
         List<Users> users = UserService.getAll();
         
@@ -32,6 +39,12 @@ public class AdminServlet extends HttpServlet {
         getServletContext().getRequestDispatcher("/WEB-INF/admin.jsp").forward(request, response);
     }
     
+    /**
+     * Handles the action of editing a user
+     * @param request
+     * @param response
+     * @throws Exception 
+     */
     private void editUser(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String actualPassword = request.getParameter("password");
         String newPassword = request.getParameter("newPassword");
@@ -109,6 +122,12 @@ public class AdminServlet extends HttpServlet {
         getBasePage(request, response);
     }
     
+    /**
+     * Handles deleting a user from the database
+     * @param request
+     * @param response
+     * @throws Exception 
+     */
     private void deleteUser(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String rawId = request.getParameter("userId");
         
@@ -128,6 +147,12 @@ public class AdminServlet extends HttpServlet {
         getBasePage(request, response);
     }
     
+    /**
+     * Handles displaying the edit user page to an admin
+     * @param request
+     * @param response
+     * @throws Exception 
+     */
     private void showEditUser(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String rawId = request.getParameter("userId");
         
@@ -150,6 +175,12 @@ public class AdminServlet extends HttpServlet {
         getServletContext().getRequestDispatcher("/WEB-INF/editUser.jsp").forward(request, response);
     }
     
+    /**
+     * Handles action choices from the admin page
+     * @param request
+     * @param response
+     * @throws Exception 
+     */
     private void handleAdminPage(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String action = request.getParameter("action");
         
@@ -173,6 +204,13 @@ public class AdminServlet extends HttpServlet {
         }
     }
     
+    /**
+     * Handles verifying the user requesting this page is an administrator
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException 
+     */
      @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -198,6 +236,13 @@ public class AdminServlet extends HttpServlet {
         }
     }
     
+    /**
+     * Jumps to the doGet method
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException 
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

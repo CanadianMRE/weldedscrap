@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
+ * Loads the page for purchase failure
  * @author WeldedScrap
  */
 public class PurchaseFailed extends HttpServlet {

@@ -11,10 +11,16 @@ import javax.persistence.EntityTransaction;
 import models.Products;
 
 /**
- *
+ * This access class is intended for using with the user's cart to store ids related to stripe 
+ * 
  * @author Jaymen
  */
 public class ProductDB {
+    /**
+     * Returns a List of all cached products
+     * @return  List of all products we've cached
+     * @throws  Exception 
+     */
     public static List<Products> getAll() throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         
@@ -25,7 +31,14 @@ public class ProductDB {
             em.close();
         }
     }
-
+    
+    /**
+     * Gets a cached productid if it exists
+     * 
+     * @param   id  ProductId which relates to a product we cached
+     * @return  Product related to the id given or null
+     * @throws  Exception 
+     */
     public static Products get(String id) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         
@@ -37,6 +50,12 @@ public class ProductDB {
         }
     }
 
+    /**
+     * Inserts a product into database to be cached
+     * 
+     * @param product a product object to be added
+     * @throws Exception 
+     */
     public static void insert(Products product) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
@@ -53,6 +72,12 @@ public class ProductDB {
         }
     }
 
+    /**
+     * Updates a product in the database
+     * 
+     * @param product  a product object to be updated
+     * @throws Exception 
+     */
     public static void update(Products product) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
@@ -67,7 +92,13 @@ public class ProductDB {
             em.close();
         }
     }
-
+    
+    /**
+     * Deletes a product from the database
+     * 
+     * @param product product to be deleted
+     * @throws Exception 
+     */
     public static void delete(Products product) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();

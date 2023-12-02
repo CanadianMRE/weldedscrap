@@ -11,10 +11,17 @@ import javax.persistence.EntityTransaction;
 import models.Roles;
 
 /**
- *
+ * This class is used for user roles, indicating permission levels and status of admin accounts.
+ * 
  * @author Jaymen
  */
 public class RoleDB {
+    /**
+     * Gets a list of every role in the database
+     * 
+     * @return A list of all roles in the database
+     * @throws Exception 
+     */
      public static List<Roles> getAll() throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         
@@ -25,7 +32,14 @@ public class RoleDB {
             em.close();
         }
     }
-
+     
+    /**
+     * Gets a role related to the given id
+     * 
+     * @param id    Id of the role we want to fetch
+     * @return  Role related to the id or null if no role is related
+     * @throws Exception 
+     */
     public static Roles get(Integer id) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         
@@ -37,6 +51,12 @@ public class RoleDB {
         }
     }
 
+    /**
+     * Inserts a new role into the database
+     * 
+     * @param role  Role we want to insert into the database
+     * @throws Exception 
+     */
     public static void insert(Roles role) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
@@ -53,6 +73,12 @@ public class RoleDB {
         }
     }
 
+    /**
+     * Updates a role in the database
+     * 
+     * @param role  Role we want to update
+     * @throws Exception 
+     */
     public static void update(Roles role) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
@@ -68,6 +94,12 @@ public class RoleDB {
         }
     }
 
+    /**
+     * Deletes a role from the database
+     * 
+     * @param role  Role we want to delete
+     * @throws Exception 
+     */
     public static void delete(Roles role) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();

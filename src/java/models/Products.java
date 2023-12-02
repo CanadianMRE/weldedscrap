@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
- *
+ * AUTO GENERATED PRODUCTS ACCESS CLASS
  * @author WeldedScrap
  */
 @Entity

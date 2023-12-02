@@ -19,11 +19,17 @@ import services.VerificationService;
 import services.AccountService;
 
 /**
- *
+ * Handles viewing and editing the user page
  * @author gursh
  */
 public class UserServlet extends HttpServlet {
     
+    /**
+     * Gets the base user page
+     * @param request
+     * @param response
+     * @throws Exception 
+     */
     private void getBasePage(HttpServletRequest request, HttpServletResponse response) throws Exception {
         HttpSession session = request.getSession();
         
@@ -34,6 +40,12 @@ public class UserServlet extends HttpServlet {
         getServletContext().getRequestDispatcher("/WEB-INF/user.jsp").forward(request, response);
     }
     
+    /**
+     * Deletes a user's account
+     * @param request
+     * @param response
+     * @throws Exception 
+     */
     private void deleteAccount(HttpServletRequest request, HttpServletResponse response) throws Exception {
         HttpSession session = request.getSession();
         Users user = (Users) session.getAttribute("user");
@@ -41,6 +53,12 @@ public class UserServlet extends HttpServlet {
         UserService.delete(user);
     }
     
+    /**
+     * Updates a user's account with the given information after verifying their password
+     * @param request
+     * @param response
+     * @throws Exception 
+     */
     private void updateAccount(HttpServletRequest request, HttpServletResponse response) throws Exception{
         String actualPassword = request.getParameter("password");
         String newPassword = request.getParameter("newPassword");
@@ -101,7 +119,13 @@ public class UserServlet extends HttpServlet {
         UserService.update(user);
         getBasePage(request, response);
     }
-        
+       
+    /**
+     * Handles actions from the user
+     * @param request
+     * @param response
+     * @throws Exception 
+     */
     private void handleUserPage(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String action = request.getParameter("action");
         
@@ -122,6 +146,13 @@ public class UserServlet extends HttpServlet {
         }
     }
     
+    /**
+     * Handles verifying the user is logged in
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException 
+     */
      @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -142,6 +173,13 @@ public class UserServlet extends HttpServlet {
         }
     }
     
+    /**
+     * Hands off control to doGet
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException 
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

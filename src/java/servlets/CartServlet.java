@@ -17,11 +17,18 @@ import javax.servlet.http.HttpSession;
 import services.StripeAccess;
 
 /**
- *
- 
-@author gursh*/
+ * This page handles all cart access and getting cart information
+ * @author gursh
+ */
 public class CartServlet extends HttpServlet {
 
+    /**
+     * Handles getting the cart page
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException 
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -35,6 +42,14 @@ public class CartServlet extends HttpServlet {
         }
     }
 
+    /**
+     * Fetches all information for the cart and actually does the redirect
+     * @param request
+     * @param response
+     * @param session
+     * @throws ServletException
+     * @throws IOException 
+     */
     private void viewCart(HttpServletRequest request, HttpServletResponse response, HttpSession session)
             throws ServletException, IOException {
         List<String> cart = (List<String>) session.getAttribute("cart");
@@ -63,6 +78,13 @@ public class CartServlet extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/cart.jsp").forward(request, response);
     }
 
+    /**
+     * Handles cart actions such as adding and removing items
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException 
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

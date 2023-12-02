@@ -13,11 +13,18 @@ import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
 /**
- *
+ * This class handles user data access
+ * 
  * @author Jaymen
  */
 public  class UserDB {
-     public static List<Users> getAll() throws Exception {
+    
+    /**
+     * Gets a list of all users in the database
+     * @return  List with all users in the database
+     * @throws Exception 
+     */
+    public static List<Users> getAll() throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         
         try {
@@ -28,6 +35,11 @@ public  class UserDB {
         }
     }
 
+    /**
+     * Gets a specific user related to the given id
+     * @param userId Id of the user we want to grab
+     * @return User we want to grab or null if no user exists
+     */
     public static Users getByUserId(int userId) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
@@ -41,7 +53,13 @@ public  class UserDB {
             em.close();
         }
     }
-
+    
+    /**
+     * Gets a specific user related to the given email
+     * 
+     * @param email email of the user we want to fetch
+     * @return user we want to grab or null if no user exists
+     */
     public static Users getByEmail(String email) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
@@ -56,7 +74,12 @@ public  class UserDB {
         }
     }
 
-
+    /**
+     * Inserts a new user into the database
+     * 
+     * @param user The user we want to insert into the database
+     * @throws Exception 
+     */
     public static void insert(Users user) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
@@ -72,6 +95,12 @@ public  class UserDB {
         }
     }
 
+    /**
+     * Updates a user in the database
+     * 
+     * @param user The user we want to update in the database
+     * @throws Exception 
+     */
     public static void update(Users user) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
@@ -87,6 +116,12 @@ public  class UserDB {
         }
     }
 
+    /**
+     * Deletes a user from the database
+     * 
+     * @param user User we want to delete from the database
+     * @throws Exception 
+     */
     public static void delete(Users user) throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();

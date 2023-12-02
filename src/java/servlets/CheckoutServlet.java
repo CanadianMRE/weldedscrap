@@ -16,11 +16,16 @@ import javax.servlet.http.HttpServletResponse;
 import services.StripeAccess;
 
 /**
- *
+ * Handles user access for checking out a cart of items
+ * 
  * @author gursh
  */
 public class CheckoutServlet extends HttpServlet {
-     @Override
+    
+    /**
+     * Hands off control to StripeAccess to handle the checkout session
+     */
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
          try {
@@ -31,6 +36,13 @@ public class CheckoutServlet extends HttpServlet {
          }
     }
     
+    /**
+     * Relays to the doGet method
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException 
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

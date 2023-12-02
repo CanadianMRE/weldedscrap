@@ -16,12 +16,19 @@ import javax.servlet.http.HttpServletResponse;
 import com.stripe.model.Price;
 import services.*;
 /**
- *
+ * Handles access to viewing a specific product
+ * 
  * @author gursh
  */
 public class ItemServlet extends HttpServlet {
 
-    
+    /**
+     * Handles fetching information related to a specific product
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException 
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -42,7 +49,13 @@ public class ItemServlet extends HttpServlet {
         getServletContext().getRequestDispatcher("/WEB-INF/item.jsp").forward(request, response);
     }
 
-   
+   /**
+    * Passes control to the doGet method
+    * @param request
+    * @param response
+    * @throws ServletException
+    * @throws IOException 
+    */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

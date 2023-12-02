@@ -15,11 +15,19 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- *
+ * Handles logins
+ * 
  * @author gursh
  */
 public class LoginServlet extends HttpServlet {
 
+    /**
+     * Logs out if logged in and loads the login page
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException 
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -30,15 +38,18 @@ public class LoginServlet extends HttpServlet {
                 .forward(request, response);
     }
 
+    /**
+     * Attempts a login with the given credentials
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException 
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
     String email = request.getParameter("email");
     String password = request.getParameter("password");
-
-
-    System.out.println("Email: " + email);
-    System.out.println("Password: " + password);
 
     AccountService accountService = new AccountService();
     Users user = accountService.login(email, password);

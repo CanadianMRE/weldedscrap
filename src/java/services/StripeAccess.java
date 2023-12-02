@@ -28,23 +28,48 @@ import javax.servlet.http.HttpSession;
 import models.Users;
 
 /**
- *
+ * This class handles stripe checkouts and product fetching
+ * 
  * @author WeldedScrap
  */
 public class StripeAccess {
+    /**
+     * Domain name for the website
+     */
     public static final String MY_DOMAIN = "http://localhost:8084/WeldedScrap";
+    
+    /**
+     * API key for stripe
+     */
     private static final String API_KEY = "sk_test_51M7jaMGxD4OrUtXmLf5fbGchQAoWF4ZoOVAorFLwNfDWeE5Q2LM9otIUJDlxO0GT1D7WjqkOhr0jufI4UE0LyM8200YAK8xqWa";
    
+    /**
+     * Gets the price of a specified product
+     * @param product Product Instance we want to get the price for
+     * @return Price formatted in average price syntax [0.00]
+     * @throws StripeException 
+     */
     public static String getPrice(Product product) throws StripeException {
         return String.format("%.2f", (double) Price.retrieve(product.getDefaultPrice()).getUnitAmount()/100);
     }
     
+    /**
+     * Gets a product related to the given id
+     * @param id ID related to a specific stripe product
+     * @return A product or null if no product exists
+     * @throws Exception 
+     */
     public static Product get(String id) throws Exception {
         Stripe.apiKey = API_KEY;
         
         return Product.retrieve(id);
     }
     
+    /**
+     * Gets a list of all products on stripe
+     * @return a List of all products on stripe
+     * @throws Exception 
+     */
     public static List<Product> getAll() throws Exception {
         Stripe.apiKey = API_KEY;
         ProductCollection collection = Product.list(
@@ -67,6 +92,15 @@ public class StripeAccess {
         return productList;
     }
     
+    /**
+     * Handles a purchase for a list of items in the user's cart
+     * 
+     * @param request
+     * @param response
+     * @throws IOException
+     * @throws StripeException
+     * @throws Exception 
+     */
     public static void PurchaseItems(HttpServletRequest request, HttpServletResponse response) throws IOException, StripeException, Exception {
         HttpSession session = request.getSession();
         
