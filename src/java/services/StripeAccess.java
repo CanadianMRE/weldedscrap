@@ -83,8 +83,6 @@ public class StripeAccess {
                 .setMode(SessionCreateParams.Mode.PAYMENT)
                 .setSuccessUrl(MY_DOMAIN + "/success")
                 .setCancelUrl(MY_DOMAIN + "/failed")
-//                .setSuccessUrl(MY_DOMAIN + "/home")
-//                .setCancelUrl(MY_DOMAIN + "/home")
                 .setBillingAddressCollection(BillingAddressCollection.REQUIRED)
                 .setInvoiceCreation(
                         SessionCreateParams.InvoiceCreation.builder().setEnabled(true).build()
@@ -127,6 +125,7 @@ public class StripeAccess {
         SessionCreateParams params = sessionBuild.build();
         
         session.setAttribute("cart", new ArrayList<String>());
+        session.setAttribute("cartCount", 0);
         
         Session stripeSession = Session.create(params);
         
