@@ -87,7 +87,7 @@
                         <tbody>
                             <tr>
                                 <td><a href="mailto:tyler@weldedscrap.ca" name='email'>tyler@weldedscrap.ca</a></td>
-                                <td><a href="403-857-3423">(403)857-3423</a></td>
+                                <td><a href="tel:4038573423">(403)857-3423</a></td>
                             </tr>
                         </tbody>
                     </table>
